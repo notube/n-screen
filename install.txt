@@ -1,19 +1,48 @@
-==EJabberd setup==
+==Quick start==
 
-* assume you have ejabberd setup with jabber.yourserver.org and able to handle anonymous connections (see 
-ejabberd_setup.txt)
+Asssuming you have ejabberd working with bosh, you can justdo this (assuming Ubuntu)
 
-* assuming also that you have set up bosh and have it working correctly (see ejabberd_setup.txt gotchas section)
+To show the basic demo:
 
-* then you need to add the relevant user:
+sudo apt-get install git-core
 
-ejabberdctl register telly jabber.yourserver.org password
+cd /var/ww/
+git clone git://github.com/notube/n-screen.git
+
+cd n-screen/
+
+nano conf.js 
+[[
+var server = "eurovision.foaf.tv"; 
+]]
+
+su root
+
+ejabberdctl register telly jabber.yourserver.org somepassword
+
+cd ruby
+sudo gem install json_pure
+sudo gem install xmpp4r
+
+nano brain.rb
+
+[[
+  def initialize
+    self.jid = "telly@jabber.yourserver.org" #fixme for your server
+    self.password = "password" #fixme for your server
+]]
+
+
+nohup ruby brain.rb &
+
+go to 
+http://jabber.yourserver.org/n-screen/ (or wherever you put it)
+
 
 ==Main html / js frontend (index.html) ==
 
 The idea is that anyone who goes to the url is placed in a group of friends and can drag and drop items between them.
 Because it's anonymous we need something to coordinate and ensure they all become friends: that's what the brain does.
-It's possible that groups might be better, but that woudd require rearchitecting, and we've not done that yet.
 
 Installaton is just a matter of dropping the filetree somewhere convenient on your server with the *same domain* as 
 the Bosh connection.
@@ -40,3 +69,7 @@ nohup ruby brain.rb &
 To play videos by dragging and dropping onto the TV, you need to download and install XBMC (10.1 or better): 
 http://xbmc.org/download/, start it up and then go to system->network and check 'allow control of XBMC via http'. 
 brain.rb assumes the port is the default 8080.
+
+==eJabberd==
+
+see ejabberd_setup.txt
