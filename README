@@ -14,8 +14,8 @@ on the same machine as the XBMC installation.
 Here we've included sample data and images for some archive.org video content so you can see how it might work. The 
 numbers of videos are quite small so we've just included the data here, but you could also use APIs to get the data 
 and / or store the videos locally rather than remotely. conf_bbc.js shows how remote data apis might work, and 
-conf_rai.js how it might work if your videos and data were local.
-
+conf_rai.js how it might work if your videos and data were local - but these latter two won't work straight out of the 
+box as they'd need apis running and / or local video.
 
 ==Installation==
 
@@ -30,5 +30,5 @@ This is only possible because of the great open source libraries available:
 * strophe XMPP over HTTP http://strophe.im/
 * eJabberd XMPP server http://www.ejabberd.im/
 * XMPP4R ruby gem http://home.gna.org/xmpp4r/
-
+* XBMC: http://xbmc.org/
 

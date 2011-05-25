@@ -35,4 +35,8 @@ ejabberdctl register telly jabber.yourserver.org password
 then it's just
 nohup ruby brain.rb &
 
+==XBMC==
 
+To play videos by dragging and dropping onto the TV, you need to download and install XBMC (10.1 or better): 
+http://xbmc.org/download/, start it up and then go to system->network and check 'allow control of XBMC via http'. 
+brain.rb assumes the port is the default 8080.
