@@ -1,0 +1,38 @@
+==EJabberd setup==
+
+* assume you have ejabberd setup with jabber.yourserver.org and able to handle anonymous connections (see 
+ejabberd_setup.txt)
+
+* assuming also that you have set up bosh and have it working correctly (see ejabberd_setup.txt gotchas section)
+
+* then you need to add the relevant user:
+
+ejabberdctl register telly jabber.yourserver.org password
+
+==Main html / js frontend (index.html) ==
+
+The idea is that anyone who goes to the url is placed in a group of friends and can drag and drop items between them.
+Because it's anonymous we need something to coordinate and ensure they all become friends: that's what the brain does.
+It's possible that groups might be better, but that woudd require rearchitecting, and we've not done that yet.
+
+Installaton is just a matter of dropping the filetree somewhere convenient on your server with the *same domain* as 
+the Bosh connection.
+
+==Ruby backend==
+
+This is the 'brain' that collates information about connections and redistributes them (telly@).
+It also forwards connections between XMPP and XBMC via the http API for XBMC.
+
+you need to do:
+
+sudo gem install json_pure
+sudo gem install xmpp4r
+
+assuming you have done
+
+ejabberdctl register telly jabber.yourserver.org password
+
+then it's just
+nohup ruby brain.rb &
+
+

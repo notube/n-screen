@@ -1,0 +1,93 @@
+#suggestions1 {
+        padding: 0px;
+        background: #fff;
+}
+
+#suggestions2 {
+        padding: 0px;
+        background: #fff;
+}
+
+#wrapper {
+
+        position: relative;
+
+        margin: 0px;
+        padding: 0px;
+
+        text-align: left;
+        border:0;
+        width: 100%;
+	clear:both;
+}
+
+#roster_wrapper{
+margin-left:auto;
+margin-right:auto;
+}
+
+
+#header{
+       display: block;
+       height: 60px; 
+       line-height: 60px;
+       font-size: 24px;
+       font-weight: bold;
+       text-indent: 56px;
+       width: 100%;
+       background: #eee;
+       margin-top: 20px;
+       padding:0px;
+       border:0.5;
+}
+
+  
+#header span.form{
+  float:right;
+  font-size: 16px;
+}
+
+.large{
+  display:none;
+}
+
+.p_title{
+ font-weight: bold;
+}
+
+.center{
+ text-align:center;
+}
+
+
+        .draggable2 { width: 150px; height: 150px; padding: 0.5em; float:left;}
+        .draggable3 { width: 150px; height: 250px; padding: 0.5em; float:left;}
+
+        .draggable3 img{ 
+                margin-right:10px;float:left;clear:left;max-width:150px;
+        }
+
+        .draggable2 img{max-width:150px;}
+        .snaptarget { width: 150px;height: 150px; padding: 0.5em; float:left;}
+        .newClass { width: 320px; height: 320px; }
+        .flatter_sm { width: 320px; height: 50px; }
+
+	.newClass img{
+		margin-right:10px;float:left;clear:left;
+        }
+
+        .tiny { width: 10px; height: 10px; }
+        .smaller { width: 280px; height: 200px; }
+
+
+.simple_overlay {
+
+        /* must be initially hidden */
+        display:none;
+
+        /* place overlay on top of other elements */
+        z-index:10000;
+}
+
+
+
