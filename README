@@ -1,7 +1,7 @@
 This is an experimental system exploring 'drag and drop' communication of items
 between screens (e.g. tablet PCs, multi-touch tables, TV and media devices).
 
-The initial implementation uses XMPP, and focusses on transfer of program items only.
+The initial implementation uses XMPP, and focuses on transfer of program items only.
 
 Possible extensions could include passing of topics, of links into areas of a collection, 
 or of items passed into the browser using drag and drop from the host operating system.
