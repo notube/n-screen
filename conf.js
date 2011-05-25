@@ -7,7 +7,6 @@ var my_name;
 var use_strophe = true;
 
 var server = "localhost"; //change this to your server
-//var server = "jabber.notu.be"; //change this to your server
 
 //This is the hardcoded ruby 'brain' XMP identifier, which passes messages to the TV (e.g. to XBMC)
 var far = "telly@"+server; 
@@ -16,17 +15,17 @@ var local_search = true;
 
 //location of data or services
 //these could be things like "api/search?q=..." etc 
-var start_url="starting_points/start_archive_org.js";
+var start_url="data/all_data.js";
 
 //this is the simple statuc version
 //could be something like 
 //api/search?q="+escape(txt)+"&fmt=json",
 function get_search_url(query){
- return search_url = "starting_points/start_archive_org.js";
+ return search_url = "data/all_data.js";
 }
 
 //simplest - could be an api
-var random_url= "starting_points/start_archive_org.js";
+var random_url= "data/all_data.js";
 
 //for related content
 //this is the static version. Could be something like

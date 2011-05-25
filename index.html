@@ -61,11 +61,9 @@ function init(){
      }
      if(pr.match("user_name")){
          my_name=pr.substring(11);
-console.log(my_name)
      }
      if(pr.match("video_files")){
          video_files=pr.substring(12);
-console.log(video_files);
          if(!video_files.match(/^file:\/\//)){
             video_files = "file:///"+video_files;
          }
@@ -220,7 +218,6 @@ function capitalise(txt){
 function random(result,el){
 //pass to the common bit of processing
 
-console.log("foo "+local_search);
   var suggestions = [];
 
   if(local_search){
@@ -357,7 +354,6 @@ function process_json_results(suggestions,ele,pid_title){
                    video = video+"#"+secs
                 }
 
-console.log("ffff "+video+" id "+id);
 
                 if(video && id){
 
