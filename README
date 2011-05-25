@@ -1,8 +1,34 @@
-This is an experimental system exploring 'drag and drop' communication of items
-between screens (e.g. tablet PCs, multi-touch tables, TV and media devices).
+==N-screen==
 
-The initial implementation uses XMPP, and focuses on transfer of program items only.
+This is a web-based application that allows multiple people to go to a URL in a browser, drag and drop programmes 
+between each other, and drag and drop programmes to a 'TV' (XBMC installation) to play them. It can be used to find 
+and watch on-demand TV when 'together but apart'. You can see a video here:
 
-Possible extensions could include passing of topics, of links into areas of a collection, 
-or of items passed into the browser using drag and drop from the host operating system.
+http://www.flickr.com/photos/nicecupoftea/5758350110/
+
+The setup is currently a bit complicated. It requires an EJabberd installation with Bosh enabled, and a Ruby backend 
+server including various gems installed. The actual client is very simple though - javascript and HTML with strophe 
+and jquery - it works in modern browsers. The eJabberd server can be on a separate machine. The ruby brain needs to be 
+on the same machine as the XBMC installation.
+
+Here we've included sample data and images for some archive.org video content so you can see how it might work. The 
+numbers of videos are quite small so we've just included the data here, but you could also use APIs to get the data 
+and / or store the videos locally rather than remotely. conf_bbc.js shows how remote data apis might work, and 
+conf_rai.js how it might work if your videos and data were local.
+
+
+==Installation==
+
+See install.txt and ejabberd_setup.txt
+
+==Libraries==
+
+This is only possible because of the great open source libraries available:
+
+* jquery drag and drop http://jqueryui.com/demos/draggable/
+* touch jquery addon http://code.google.com/p/jquery-ui-for-ipad-and-iphone/
+* strophe XMPP over HTTP http://strophe.im/
+* eJabberd XMPP server http://www.ejabberd.im/
+* XMPP4R ruby gem http://home.gna.org/xmpp4r/
+
 

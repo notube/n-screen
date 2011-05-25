@@ -1,0 +1,461 @@
+{
+  "title": "The Giant Gila Monster",
+  "suggestions": [
+    {
+      "title": "The World Gone Mad",
+      "explanation": [
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/DirectorialDebutFilms",
+          9
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Directorial_debut_films",
+          10
+        ],
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://dbpedia.org/ontology/language|http://dbpedia.org/resource/English_language",
+          75
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "The_World_Gone_Mad",
+      "video": "http://ia600102.us.archive.org/23/items/WorldGoneMad/WorldGoneMad_512kb.mp4",
+      "description": "The World Gone Mad is a low-budget 1933 Hollywood studio drama. When a district attorney who has been investigating a utility company&#39;s directors for fraud is suddenly killed, his wise-cracking newspaperman friend (O&#39;Brien) gets curious. He and the upstanding new district attorney (Hamilton) separately pursue the case.",
+      "image": "images/The_World_Gone_Mad.png"
+    },
+    {
+      "title": "The Phantom from 10,000 Leagues",
+      "explanation": [
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Giant_monster_films",
+          4
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/GiantMonsterFilms",
+          4
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/1950sScienceFictionFilms",
+          11
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:1950s_science_fiction_films",
+          11
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://dbpedia.org/ontology/language|http://dbpedia.org/resource/English_language",
+          75
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "The_Phantom_from_10,000_Leagues",
+      "video": "http://ia600102.us.archive.org/23/items/ThePhantomFrom10.000Leagues/ThePhantomFrom10.000Leagues_512kb.mp4",
+      "description": "The Phantom from 10,000 Leagues is a 1955 science fiction film. It was directed by Dan Milner and starred Kent Taylor. The movie was released December, 1955. It was a B-movie success and has had many DVD releases.",
+      "image": "images/The_Phantom_from_10,000_Leagues.jpg"
+    },
+    {
+      "title": "Queen of the Amazons",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://dbpedia.org/ontology/language|http://dbpedia.org/resource/English_language",
+          75
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Queen_of_the_Amazons",
+      "video": "http://ia600102.us.archive.org/23/items/QueenoftheAmazons/QueenoftheAmazons_512kb.mp4",
+      "description": "Queen of the Amazons is a 1947 adventure film directed by Edward Finney.",
+      "image": "images/Queen_of_the_Amazons.jpg"
+    },
+    {
+      "title": "Swamp Women",
+      "explanation": [
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/DirectorialDebutFilms",
+          9
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Directorial_debut_films",
+          10
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/MysteryScienceTheater3000Films",
+          21
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Mystery_Science_Theater_3000_episodes",
+          22
+        ],
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://dbpedia.org/ontology/language|http://dbpedia.org/resource/English_language",
+          75
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Swamp_Women",
+      "video": "http://ia600102.us.archive.org/23/items/RC_SwampWomen/RC_SwampWomen_512kb.mp4",
+      "description": "Swamp Women was one of the first films directed by Roger Corman. The story follows undercover police officer Lee Hampton who joins three female convicts and escapes from prison. The escape is part of a larger plot to uncover a cache of diamonds hidden deep within the swamps of Louisiana. This film is sometimes also known as Cruel Swamp or Swamp Diamonds. The film is now in the public domain.",
+      "image": "images/Swamp_Women.png"
+    },
+    {
+      "title": "Bride of the Gorilla",
+      "explanation": [
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/1950sHorrorFilms",
+          10
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:1950s_horror_films",
+          10
+        ],
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Bride_of_the_Gorilla",
+      "video": "http://ia600102.us.archive.org/23/items/bride_of_a_gorilla/bride_of_a_gorilla_512kb.mp4",
+      "description": "Bride of the Gorilla is a 1951 B-movie film directed by Curt Siodmak and starring Raymond Burr, Lon Chaney Jr. and Barbara Payton. The pre-release working title was The Face in the Water.",
+      "image": "images/Bride_of_the_Gorilla.jpg"
+    },
+    {
+      "title": "Creature from the Haunted Sea",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://dbpedia.org/ontology/language|http://dbpedia.org/resource/English_language",
+          75
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Creature_from_the_Haunted_Sea",
+      "video": "http://ia600102.us.archive.org/23/items/CreatureFromTheHauntedSea/CreatureFromTheHauntedSea_512kb.mp4",
+      "description": "Creature from the Haunted Sea is a 1961 comedy film directed by Roger Corman. Written by Charles B.",
+      "image": "images/Creature_from_the_Haunted_Sea.jpg"
+    },
+    {
+      "title": "Undersea Kingdom",
+      "explanation": [
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/MysteryScienceTheater3000Films",
+          21
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Mystery_Science_Theater_3000_episodes",
+          22
+        ],
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://dbpedia.org/ontology/language|http://dbpedia.org/resource/English_language",
+          75
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ]
+      ],
+      "id": "Undersea_Kingdom",
+      "video": "http://ia600102.us.archive.org/23/items/undersea_kingdom1/undersea_kingdom1_512kb.mp4",
+      "description": "Undersea Kingdom (1936) is a Republic Pictures film serial released in response to Universal&#39;s Flash Gordon. It was the second of the sixty-six serials made by Republic. In 1966 scenes from the serial was edited into a 100-minute television film titled Sharad of Atlantis. Following a suspicious earthquake, and detecting a series of signals, Professor Norton leads an expedition, including Lt Crash Corrigan and Reporter Diana Compton, in his Rocket Submarine to the suspected location of Atlantis.",
+      "image": "images/Undersea_Kingdom.jpg"
+    }
+  ],
+  "id": "The_Giant_Gila_Monster"
+}
