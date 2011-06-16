@@ -2,7 +2,7 @@
 //can also be specified using #user_name=
 var my_name;
 
-//if this is false it just ignires strophe
+//if this is false it just ignores strophe
 //you can still browse and search the data but not share or play it
 var use_strophe = true;
 

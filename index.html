@@ -374,7 +374,7 @@ function process_json_results(suggestions,ele,pid_title){
                     explanation = clean_up(explanation);
 
                     //i.s. if this is caled because it's related content, say why
-                    if(pid_title){
+                    if(pid_title && explanation){
                         html.push("<span class=\"explain\"><b>Related to "+pid_title+" by "+explanation+"</b></span>");
                     }
 
