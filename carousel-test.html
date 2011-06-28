@@ -11,12 +11,23 @@ $(document).ready(function(){
 	// This initialises carousels on the container elements specified, in this case, carousel1.
 	$("#carousel1").CloudCarousel(		
 		{			
+			autoRotate: true,
 			xPos: 300,
 			yPos: 100,
 			buttonLeft: $("#left-but"),
 			buttonRight: $("#right-but"),
 			altBox: $("#alt-text"),
-			titleBox: $("#title-text")
+			titleBox: $("#title-text"),
+			fps: 5,	
+			reflHeight: 64,
+			minScale: 0.25,
+			reflGap: 10,
+			reflOpacity: 0.2,
+			xRadius: 400,
+			yRadius: 250,
+			speed: 0.3,
+			bringToFront: true
+
 		}
 	);
 });
@@ -26,7 +37,7 @@ $(document).ready(function(){
 </head>
     <body>
     	<!-- This is the container for the carousel. -->
-        <div id = "carousel1" style="width:648px; height:568px;background:#000;overflow:scroll;">            
+        <div id = "carousel1" style="width:648px; height:568px;background:#FFF;overflow:scroll;">            
             <!-- All images with class of "cloudcarousel" will be turned into carousel items -->
             <!-- You can place links around these images -->
 
