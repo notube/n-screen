@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
 # TellyClub:n-screen danbri$ find images/ -name \*.jpg  -exec convert -define jpeg:size=500x180  {}  -auto-orient  -thumbnail 128x   -unsharp 0x.5  thumbs/{} \;              
+# or better 
+#  find images/ -name \*.jpg  -exec convert -define jpeg:size=500x180  {}  -auto-orient  -thumbnail x128   -unsharp 0x.5  thumbs/{} \; 
+#  ... each thumbnail now has a wixed width
 
 # Quick script to generate bulk of a page suitable for use with http://www.professorcloud.com/mainsite/carousel-integration.htm
 #
