@@ -407,7 +407,7 @@ function show_disconnect(){
 }
     
 
-//ask teh user for their name
+//ask the user for their name
 
 function show_ask_for_name(){
 	$(function() {
@@ -421,6 +421,8 @@ function add_name(){
   var name = document.forms["myname"].nick.value;
   if(name){
     my_name=name;
+//??trigger
+    $(document).trigger('send_name');
   }
   $(function() {
       $( "#ask_for_name_overlay" ).dialog("close");
