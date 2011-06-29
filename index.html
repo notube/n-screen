@@ -392,9 +392,8 @@ function process_json_results(suggestions,ele,pid_title){
           }
 
 
-    refresh();
-    refresh_buttons();
-
+   $(document).trigger('refresh');
+   $(document).trigger('refresh_buttons');
 }
 
         
