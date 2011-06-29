@@ -89,7 +89,6 @@ function init(){
 //display suggestions based on id
 
 function insert_suggest2(id) {
-      
       var div = $("#"+id);
       var title = div.find(".p_title").text();
       var description = div.find(".description").text();
@@ -392,6 +391,8 @@ function process_json_results(suggestions,ele,pid_title){
           }
 
 
+//   $(".button").unbind('refresh');
+//   $(".button").unbind('refresh_buttons');
    $(document).trigger('refresh');
    $(document).trigger('refresh_buttons');
 }
