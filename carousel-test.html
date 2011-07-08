@@ -77,7 +77,7 @@ $("#example3")
 
 // Topic
 $("#example4")
-  .suggest()
+  .suggest({ "type": ["/film/director"],  "type_strict": "any" })
   .bind("fb-select", function(e, data) {
     alert(data.name + ", " + data.id + $("#carousel1"));
   });
