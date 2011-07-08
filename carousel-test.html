@@ -59,7 +59,7 @@ $("#example1")
 
 // Place
 $("#example2")
-  .suggest({ "type": ["/location/country", "/location/us_state"],  "type_strict": "any" })
+  .suggest({ "type": ["/location/country", "/location/us_state", "/location/location"],  "type_strict": "any" })
   .bind("fb-select", function(e, data) {
     alert(data.name + ", " + data.id + $("#carousel1"));
   });
