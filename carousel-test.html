@@ -11,7 +11,6 @@ $(document).ready(function(){
 	// This initialises carousels on the container elements specified, in this case, carousel1.
 	$("#carousel1").CloudCarousel(		
 		{			
-			autoRotate: true,
 			xPos: 300,
 			yPos: 100,
 			buttonLeft: $("#left-but"),
@@ -23,7 +22,7 @@ $(document).ready(function(){
 			minScale: 0.25,
 			reflGap: 10,
 			reflOpacity: 0.2,
-			xRadius: 400,
+			xRadius: 450,
 			yRadius: 250,
 			speed: 0.3,
 			bringToFront: true
@@ -33,6 +32,16 @@ $(document).ready(function(){
 });
  
 </script>
+
+<!-- http://www.freebase.com/docs/suggest -->
+<link type="text/css" rel="stylesheet" href="http://freebaselibs.com/static/suggest/1.3/suggest.min.css" />
+<script type="text/javascript" src="http://freebaselibs.com/static/suggest/1.3/suggest.min.js"></script>
+<script type="text/javascript">
+$(function() {
+  $("#myinput").suggest({type:'/film/director'});
+});
+</script>
+
  
 </head>
     <body>
@@ -44,6 +53,38 @@ $(document).ready(function(){
 <!--            <img class = "cloudcarousel" src="/images/carousel/flags/flag1.png" alt="Flag 1 Description" title="Flag 1 Title" />
 -->
 
+
+<script type="text/javascript">
+$("#example1")
+  .suggest()
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+// Actor
+$("#example2")
+  .suggest({ "type": ["/film/actor"],  "type_strict": "any" })
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+// Place
+$("#example3")
+  .suggest({ "type": ["/location/country", "/location/us_state"],  "type_strict": "any" })
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+// Topic
+$("#example4")
+  .suggest()
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+
+</script>
+	
 <img class="cloudcarousel" src="thumbs/images/'Neath_Brooklyn_Bridge.jpg" alt="'Neath Brooklyn Bridge" title="'Neath Brooklyn Bridge" />
 <img class="cloudcarousel" src="thumbs/images/2010_11_23_11.jpg" alt="2010 11 23 11" title="2010 11 23 11" />
 <img class="cloudcarousel" src="thumbs/images/A_Bucket_of_Blood.jpg" alt="A Bucket of Blood" title="A Bucket of Blood" />
@@ -220,6 +261,11 @@ $(document).ready(function(){
 <img class="cloudcarousel" src="thumbs/images/Zorro's_Fighting_Legion.jpg" alt="Zorro's Fighting Legion" title="Zorro's Fighting Legion" />
 
         </div>
+
+	<p style="float: right">Director:<input id="example1" type="text"/> </p>
+	<p style="float: right">Actor:<input id="example2" type="text"/> </p>
+	<p style="float: right">Place:<input id="example3" type="text"/> </p>
+	<p style="float: right">Topic:<input id="example4" type="text"/> </p>
         
         <!-- Define left and right buttons. -->
         <input id="left-but"  type="button" value="Left" />
@@ -228,5 +274,7 @@ $(document).ready(function(){
         <!-- Define elements to accept the alt and title text from the images. -->
         <p id="title-text"></p>
         <p id="alt-text"></p>
+
+
     </body>
 </html>
