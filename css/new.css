@@ -1,0 +1,253 @@
+body{
+ background:black;
+ margin-top:0px;
+ margin-left:0px;
+ margin-right:0px;
+# border:0px;
+# padding:0px;
+}
+
+.dotted_box{
+  border: 3px dashed #ccc;
+#  padding: 10px;
+#  background: #fff;
+  height: 160px;
+  width: 300px;
+  border-color:#adadad;
+  float:left;
+  margin-right:10px;
+  margin-bottom:70px;
+/*  overflow-y: auto;*/
+
+}
+
+.contrast{
+  color:white;
+}
+
+.img_person{
+ width:70px;
+ float:left;
+}
+.img_tv{
+ width:50px;
+}
+
+#tv{
+#  margin-top:50px;
+  height:220px;
+}
+
+
+h3{
+  color:white;
+}
+
+
+#roster{
+ text-align:center;
+}
+
+#roster_wrapper{
+# float:right;
+ position:absolute;
+ right:0px;
+ top:55px;
+ width:250px;
+ min-height:1000px;
+# z-index:-1;
+ background:#424242;
+}
+
+#progs{
+
+}
+
+
+#side-a{
+ text-align:center;
+}
+
+#side-b{
+#  position:relative;
+  width:950;
+  height:280px;
+  padding:10px;
+  overflow-x: hidden; 
+  overflow-y: hidden;
+#  z-index:-1;
+
+}
+
+#results{
+  width:950;
+  height:280px;
+  padding:10px;
+  overflow-x: hidden; 
+  overflow-y: hidden;
+
+}
+
+#history{
+  width:950;
+  height:280px;
+  padding:10px;
+  overflow-x: hidden; 
+  overflow-y: hidden;
+
+}
+
+
+#content{
+#  position:relative;
+  width:900;
+  height:280;
+  padding:10px;
+  overflow-x: hidden; 
+  overflow-y: hidden;
+#  z-index:-1;
+
+}
+
+
+#side-c{
+ visibility:hidden;#tmp
+}
+
+
+#suggestions1 {
+        padding: 0px;
+        background: #fff;
+}
+
+#suggestions2 {
+        padding: 0px;
+        background: #fff;
+}
+
+#wrapper {
+
+        position: relative;
+
+        margin: 0px;
+        padding: 0px;
+
+        text-align: left;
+        ##border:0;
+        width: 100%;
+	clear:both;
+}
+
+##roster_wrapper{
+#margin-left:auto;
+#margin-right:auto;
+#}
+
+
+#header{
+       display: block;
+       height: 40px; 
+       #line-height: 60px;
+       font-size: 24px;
+       font-weight: bold;
+       text-indent: 10px;
+       width: 100%;
+       background: #eee;
+       margin-top:0px;
+       margin-right: 0px;
+       margin-left: 0px;
+       padding-bottom:10px;
+       ##border:0px;
+       background: #424242;
+       color:white;
+}
+
+
+  
+#header span.form{
+  font-size: 20px;
+  position:absolute;
+  right:240px;
+  top:0px;  
+  margin:15px;
+  border:0;
+}
+
+#header input {  
+  background-color: black;  
+  color: #848484;
+  height:25px;
+  font-style:italic;
+  border: 0px outset;
+} 
+
+
+#title{
+#  float:right;
+  font-size: 20px;
+  position:absolute;
+  right:50px;
+  top:20px;
+#  margin-left:500;
+}
+
+#main_title{
+  font-size: 20px;
+  position:absolute;
+  #left:50px;
+  top:0px;
+}
+
+
+.large{
+  display:none;
+}
+
+.p_title{
+ font-weight: bold;
+ color:white;
+}
+
+.center{
+ text-align:center;
+}
+
+
+#        .draggable2 { width: 300px; height: 250px; padding: 0.5em; float:left; }
+        .draggable2 { width: 300px;  padding: 0.5em; float:left; }
+
+
+        .draggable3 { width: 300px; height: 250px; padding: 0.5em; float:left; background:black; color:white;}
+
+        .draggable3 img{ 
+ #               margin-right:10px;float:left;clear:left;max-width:150px;
+        }
+
+        .draggable2 img{max-width:300px;}
+        .snaptarget { width: 200px; padding-right: 24px; height:100px; padding-left:24px}
+        .snaptarget2 { width: 200px; padding-right: 24px; height:200px; padding-left:24px}
+        #.snaptarget2 { width: 200px;height: 100px; padding: 24px;}
+        .newClass { width: 320px; height: 320px; }
+        .flatter_sm { width: 320px; height: 50px; }
+
+	.newClass img{
+#		margin-right:10px;float:left;clear:left;
+        }
+
+        .tiny { width: 10px; height: 10px; }
+        .smaller { width: 280px; height: 200px; }
+
+
+.simple_overlay {
+
+        /* must be initially hidden */
+#        display:none;
+
+        /* place overlay on top of other elements */
+        z-index:1;
+background:black;
+color:white;
+}
+
+
+
