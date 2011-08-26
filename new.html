@@ -139,7 +139,6 @@ function insert_suggest2(id) {
 
       html = [];
       html.push("<div id=\""+id+"_history\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content button programme ui-draggable\">");
-      html.push("<div class='grabby'></div>");
       html.push("<img class=\"img\" src=\""+img+"\" />");
       html.push("<span class=\"p_title\">"+title+"</span>");
       html.push("<p class=\"description large\">"+description+"</b></p>");
@@ -505,10 +504,8 @@ function process_json_results(suggestions,ele,pid_title,replace_content,add_stre
                 if(id){
                   if(pid_title){
                      html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme ui-draggable\">");
-                     html.push("<div class='grabby'></div>");
                   }else{
                      html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme\">");
-                     html.push("<div class='grabby'></div>");
                   }
                   html.push("<div><img class=\"img\" src=\""+img+"\" /></div>");
                   html.push("<span class=\"p_title p_title_small\"><a href=''>"+title+"</a></span>");

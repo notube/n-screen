@@ -408,18 +408,6 @@ h2{
 }
 
 
-.grabby{
- background: url("../images/grabby.png") no-repeat; 
- z-index:0;
- float:left;
- position: relative;
- top: 30;
- left: 0;
- width:20px;
- height:20px;
-}
-
-
 #new_overlay{
   position:absolute;
   top:0px;
