@@ -2,6 +2,10 @@
 //can also be specified using #user_name= in the url
 var my_name;
 
+//which is the TV? what's its name?
+var my_tv;
+var my_tv_name="Shared TV";
+
 //if this is false it just ignores strophe
 //you can still browse and search the data but not share or play it
 var use_strophe = true;
@@ -10,6 +14,10 @@ var server = "darth.local"; //change this to your server
 
 //This is the hardcoded ruby 'brain' XMP identifier, which passes messages to the TV (e.g. to XBMC)
 var far = "telly3@"+server; 
+
+//group stuff
+var group_name="default_muc";
+var group_server="conference."+server;
 
 //local search triggers some processing on search and random
 //if it's false it assumes you are using an api which returns results that need no processing
