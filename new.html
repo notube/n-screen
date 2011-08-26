@@ -8,13 +8,8 @@
   <script type="text/javascript" src="lib/fix_date.js"></script>
   <script type="text/javascript" src="lib/jquery.ui.touch.js"></script>
 
-
-  <script type="text/javascript" src="lib/tidy_classification.js"></script>
   <script type="text/javascript" src="lib/strophe.js"></script>
   <script type="text/javascript" src="lib/muc_code.js"></script><!-- depends on jquery -->
-
-
-  <link type="text/css" href="css/jquery-ui-1.8.10.custom.css" rel="Stylesheet" />
 
   <link type="text/css" rel="stylesheet" href="css/new.css" />
 
@@ -41,12 +36,6 @@
 
 <script type="text/javascript">
 
-var my_tv;
-var my_tv_name="TV Living Room";   
-    var colours = ["red","blue","green","orange","brown","black"];
-    var my_colour;
-    var people_colours={};
-   
 function set_tmp_name(){
   var rand = Math.floor(Math.random()*9999)
   //console.log("name!!! "+String(rand));
@@ -57,8 +46,6 @@ function set_tmp_name(){
 
 function init(){
 
-   var r = Math.floor(Math.random() * colours.length);
-   my_colour = colours[r];
 
    $("#main_title").html("Browse Programmes");
 
@@ -67,21 +54,16 @@ function init(){
    $container=$("#browser");
    $container.css("display","block");
 
-
-//   $footer=$("#footer");
-//   $footer.css("top","850px");
-
    $browse=$("#browse");
    $browse.addClass("blue").removeClass("grey");
 
    $random=$("#random");
    $random.addClass("grey").removeClass("blue");
 
-    //gather up parameters
+   //gather up parameters
    //we expect "#" and then separated by "&"
    var pr = window.location.hash;
 
-   //alert(pr);
    pr_arr = pr.split("&");
 
    for(x in pr_arr){
@@ -117,18 +99,14 @@ function init(){
    //ask the user for their name to continue
    //unless it's specified as a parameter
 
-   console.log("MY NAME1 "+my_name);
-
    if(!my_name || my_name==""){
-//        my_name = set_tmp_name();
         show_ask_for_name();
    }else{
         $(document).trigger('send_name');
    }
 
-   console.log("MY NAME7 "+my_name);
 
-//notifications thingy
+  //notifications 
   $("#notify").toggle(
     function (){
       console.log("SHOW");
@@ -152,15 +130,12 @@ function init(){
 function insert_suggest2(id) {
       var div = $("#"+id);
 
-console.log("IS "+id);
-console.log(div);
       var title = div.find(".p_title").text();
       var description = div.find(".description").text();
       var explanation = div.find(".explain").text();
       var video = div.attr("href");
       var pid = div.attr("pid");
       var img = div.find(".img").attr("src");
-console.log("img "+img);
 
       html = [];
       html.push("<div id=\""+id+"_history\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content button programme ui-draggable\">");
@@ -181,8 +156,6 @@ console.log("img "+img);
       html2.push("<p class=\"explain\">"+explanation+"</p>");
       html2.push("</div>");
 
-console.log("html2");
-console.log(html2);
       $('#new_overlay').html(html2.join(''));
    
       $('#new_overlay').show();  
@@ -220,10 +193,10 @@ console.log(html2);
 
 }
 
+
 //get a random selection
 
 function do_random(el){
-  //console.log("RANDOM");
 
   $("#main_title").html("Random Selection");
 
@@ -232,16 +205,12 @@ function do_random(el){
   
   $container=$("#browser");
   $container.css("display","none");
-  
- // $footer=$("#footer");
-//  $footer.css("top","850px");
 
   $browse=$("#browse");
   $browse.removeClass("blue").addClass("grey");
 
   $random=$("#random");
   $random.removeClass("grey").addClass("blue");
-
 
   //id for element to add it to
   if(!el){
@@ -274,7 +243,6 @@ function do_start(el,start_url){
   }
 
   if(start_url){
-///    $("#rec_pane").html("<h3>Starting Points</h3>");
 
     $.ajax({
       url: start_url,
@@ -297,7 +265,7 @@ function do_start(el,start_url){
 //search for txt
        
 function do_search(txt){
-//console.log("search "+txt);
+
   txt = txt.toLowerCase();
   $('#main_title').html("Search for '"+txt+"'");
 
@@ -306,9 +274,6 @@ function do_search(txt){
 
   $container=$("#browser");
   $container.css("display","none");
-
- // $footer=$("#footer");
- // $footer.css("top","850px");
 
   $browse=$("#browse");
   $browse.addClass("blue").removeClass("grey");
@@ -354,8 +319,6 @@ function capitalise(txt){
 function random(result,el){
 //pass to the common bit of processing
 
-//console.log(result);
-
   var suggestions = [];
 
   if(local_search){
@@ -387,8 +350,6 @@ function random(result,el){
 
 function recommendations(result,el,add_stream,stream_title){
 
-console.log("in secs");
-console.log(result);
    if(!el){
      el = "progs2";
    }
@@ -411,7 +372,7 @@ console.log(result);
             process_json_results(suggestions,el,pid_title,null,add_stream,stream_title);
           }
     }else{
-//tmp@
+//tmp@@ for when offline
 /*
        var s = {    "pid": "b0074fpm",
     "core_title": "Doctor Who - Series 2 - The Satan Pit",
@@ -429,8 +390,8 @@ console.log("OOPS!");
     }
 }
 
-//handle inserted search results
 
+//handle inserted search results
 function search_results(result,current_query,el){
    if(!el){
      el = "progs";
@@ -452,19 +413,14 @@ function search_results(result,current_query,el){
    }else{
       suggestions = result;
    }
-//console.log("ls "+local_search);
-//console.log(result);
 
-//console.log("xxxxx"+suggestions.length+" el "+el);
-          if(!suggestions || suggestions.length==0){
-               $("#"+el).html("<div class='sub_title' style='padding-top:26px;padding-left:8px'>Sorry, nothing found for '"+current_query+"'</div>   <div class='bluebutton'><a href='javascript:do_random()'>Give me a random selection</a></div>");
-               //$("#"+el).html("");
-          }else{
-               $("#rec_pane").html("<h3>Search results for "+current_query+"</h3>");
-               var replace_content=true;
-//console.log("ok");
-               process_json_results(suggestions,el,null,true);
-          }
+   if(!suggestions || suggestions.length==0){
+      $("#"+el).html("<div class='sub_title' style='padding-top:26px;padding-left:8px'>Sorry, nothing found for '"+current_query+"'</div>   <div class='bluebutton'><a href='javascript:do_random()'>Give me a random selection</a></div>");
+   }else{
+      $("#rec_pane").html("<h3>Search results for "+current_query+"</h3>");
+      var replace_content=true;
+      process_json_results(suggestions,el,null,true);
+   }
 
 }
 
@@ -473,8 +429,6 @@ function search_results(result,current_query,el){
 //process the results for displaying
 
 function process_json_results(suggestions,ele,pid_title,replace_content,add_stream,stream_title){
-console.log("adding stream");
-console.log("OK!"+suggestions.length);
 
           var max = 12
           var s ="";
@@ -501,20 +455,17 @@ console.log("OK!"+suggestions.length);
 
                 var channel = suggestions[r]["channel"];
                 var date_time = suggestions[r]["date_time"];
-//console.log("dt "+date_time+" ch "+channel);
+
                 var time_offset = suggestions[r]["time_offset"];
-                //var video = suggestions[r]["video"];
                 var vid;
-//                if(!vid){
-                   if(date_time && channel){
+                if(date_time && channel){
                      var dt = date_time.replace(":","-");
                      dt = dt.replace(":","-");
                      dt = dt.replace("T","/");
                      dt = dt.replace("Z","");
                      dt = dt.replace(/\+\d.*/,"");
                      vid = "http://g.bbcredux.com/programme/"+channel+"/"+dt;
-                   }
- //               }
+                }
 
                 var explanation = suggestions[r]["explanation"];
 
@@ -551,21 +502,11 @@ console.log("OK!"+suggestions.length);
                 }
 
 
-//                if(video && id){
-
-//console.log("id "+id+" title "+pid_title);
                 if(id){
-//                  if(!video){
-  //                   video=id;
-    //              }
-//console.log("id "+id+" video "+vid);
                   if(pid_title){
-//                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button draggable5\">");
                      html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme ui-draggable\">");
                      html.push("<div class='grabby'></div>");
                   }else{
-//                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button draggable2\">");
-//                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button draggable2\">");
                      html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme\">");
                      html.push("<div class='grabby'></div>");
                   }
@@ -594,13 +535,9 @@ console.log("OK!"+suggestions.length);
             }
 
 
-//console.log("HTML "+html);
-//console.log("..."+replace_content+" "+ele);
            if(replace_content){
               $("#"+ele).html(html.join(''));
            }else{
-//console.log("html");
-//console.log(html);
               $("#"+ele).append(html.join(''));
            }
            if(add_stream){
@@ -611,8 +548,6 @@ console.log("OK!"+suggestions.length);
           }
 
 
-//   $(".button").unbind('refresh');
-//   $(".button").unbind('refresh_buttons');
    $(document).trigger('refresh');
    $(document).trigger('refresh_buttons');
 }
@@ -660,22 +595,6 @@ function remove_search_text(){
   $("#search_text").attr("value","");
 }
 
-/*
-function toggle_notifications(){
-console.log("ex no ");
-console.log($("#notify_large"));
-  $("#notify_large").toggle(
-    function (){
-      $(this).show();
-    },
-    function (){
-      $(this).hide();
-    }
-
-  );
-//this isn;t right - needs to be set on the element itself on loading the page or something
-}
-*/
 function close_notifications(){
   $("#notify_large").hide();
 }
