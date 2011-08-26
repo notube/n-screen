@@ -15,11 +15,11 @@
 
   <script type="text/javascript" src="lib/tidy_classification.js"></script>
   <script type="text/javascript" src="lib/strophe.js"></script>
-  <script type="text/javascript" src="lib/strophe.roster.js"></script>
-  <script type="text/javascript" src="lib/strophe_code.js"></script><!-- depends on jquery -->
+  <script type="text/javascript" src="lib/muc_code.js"></script><!-- depends on jquery -->
 
 
   <link type="text/css" href="css/jquery-ui-1.8.10.custom.css" rel="Stylesheet" />
+
   <link type="text/css" rel="stylesheet" href="css/new.css" />
 
 <!-- workaround - http://stackoverflow.com/questions/2894230/fake-user-initiated-audio-tag-on-ipad -->
@@ -36,11 +36,20 @@
                         $("#various1").fancybox({
                                 'titlePosition'         : 'inside',
                                 'transitionIn'          : 'none',
-                                'transitionOut'         : 'none'
+                                'transitionOut'         : 'none',
+'padding':'30px',
+'margin':'20px'
+
                         });
                 });
          function foo(){
+                   $("#inline1_sub").html("<h2>What's your name?</h2>");
                    $("#various1").trigger('click');        
+         }
+
+         function disconn(){
+console.log("ok disconn");
+                   $("#inline1_sub").html("<h2>Sorry, you've been disconnected</h2><p>Please reload the page</p>");
          }
 
 
@@ -49,7 +58,8 @@
                         $("#various2").fancybox({
                                 'titlePosition'         : 'inside',
                                 'transitionIn'          : 'none',
-                                'transitionOut'         : 'none'
+                                'transitionOut'         : 'none',
+                                'padding':0 
                         });
                 });
          function foo2(){
@@ -72,13 +82,43 @@
 
 <script type="text/javascript">
 
+var my_tv;
+var my_tv_name="TV Living Room";   
+    var colours = ["red","blue","green","orange","brown","black"];
+    var my_colour;
+    var people_colours={};
+   
+function set_tmp_name(){
+  var rand = Math.floor(Math.random()*9999)
+  //console.log("name!!! "+String(rand));
+  my_name="t_"+String(rand);
+  return my_name;
+}
+   
+
 function init(){
 
-   //load the start url or random if no start_url (see conf.js)
-   //get a random set of starting points
-   do_start("progs",start_url);
- 
-   //gather up parameters
+   var r = Math.floor(Math.random() * colours.length);
+   my_colour = colours[r];
+
+   $("#main_title").html("Browse Programmes");
+
+   $sr=$("#search_results");
+   $sr.css("display","none");
+   $container=$("#browser");
+   $container.css("display","block");
+
+
+//   $footer=$("#footer");
+//   $footer.css("top","850px");
+
+   $browse=$("#browse");
+   $browse.addClass("blue").removeClass("grey");
+
+   $random=$("#random");
+   $random.addClass("grey").removeClass("blue");
+
+    //gather up parameters
    //we expect "#" and then separated by "&"
    var pr = window.location.hash;
 
@@ -91,6 +131,11 @@ function init(){
      if(pr.match("user_profile")){
          start_url=pr.substring(14);
      }
+
+     if(pr.match("random")){
+         start_url=random_url;
+     }
+
      if(pr.match("user_name")){
          my_name=pr.substring(11);
      }
@@ -106,14 +151,39 @@ function init(){
    }
 
 
+   //load the start url or random if no start_url (see conf.js)
+   //get a random set of starting points
+   do_start("progs",start_url);
+
    //ask the user for their name to continue
    //unless it's specified as a parameter
 
+   console.log("MY NAME1 "+my_name);
+
    if(!my_name || my_name==""){
+//        my_name = set_tmp_name();
         show_ask_for_name();
    }else{
-        ask_for_friendship(far);
+        $(document).trigger('send_name');
    }
+
+   console.log("MY NAME7 "+my_name);
+
+//notifications thingy
+  $("#notify").toggle(
+    function (){
+      console.log("SHOW");
+      $("#notify_large").show();
+    },
+    function (){
+      console.log("HIDE");
+      $("#notify_large").hide();
+      $("#notify").html("");
+      $("#notify_large").html("");
+      $("#notify").hide();
+    }
+
+  );
 
 }
 
@@ -121,28 +191,66 @@ function init(){
 //display suggestions based on id
 
 function insert_suggest2(id) {
-      foo2();///???
       var div = $("#"+id);
+
+console.log("IS "+id);
+console.log(div);
       var title = div.find(".p_title").text();
       var description = div.find(".description").text();
+      var explanation = div.find(".explain").text();
       var video = div.attr("href");
+      var pid = div.attr("pid");
       var img = div.find(".img").attr("src");
+console.log("img "+img);
+
       html = [];
-      html.push("<div id=\""+id+"_history\" href=\""+video+"\"  class=\"ui-widget-content button draggable2\">");
-//      html.push("<img class=\"img\" src=\""+img+"\" height=\"100\"/>");
+      html.push("<div id=\""+id+"_history\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content button programme ui-draggable\">");
+      html.push("<div class='grabby'></div>");
       html.push("<img class=\"img\" src=\""+img+"\" />");
-      html.push("<p class=\"p_title\">"+title+"</p>");
-//      html.push("<p class=\"description\">"+description+"</b></p>");
+      html.push("<span class=\"p_title\">"+title+"</span>");
+      html.push("<p class=\"description large\">"+description+"</b></p>");
       html.push("</div>");
       $('#history').prepend(html.join(''));
 
-      $('#pane2').html("One moment please....");
+      html2 = [];
+      html2.push("<div id=\""+id+"_overlay\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content draggable4\">");
+      html2.push("<img class=\"img\" src=\""+img+"\" />");
+      html2.push("<div class=\"play_button\"><img src=\"images/play.png\" /></a></div>");
+      html2.push("<span style='float:left;' class=\"p_title_large\">"+title+"</span>");
+      html2.push("<br clear=\"both\"/>");
+      html2.push("<p class=\"description\">"+description+"</p>");
+      html2.push("<p class=\"explain\">"+explanation+"</p>");
+      html2.push("</div>");
+
+console.log("html2");
+console.log(html2);
+      $('#inline2').html(html2.join(''));
+
+      $( ".play_button" ).click(function() {
+              var res = {};
+              res["id"]=id;
+              res["pid"]=pid;
+              res["title"]=title;
+              res["video"]=video;
+              res["description"]=description;
+              res["explanation"]=explanation;
+              res["img"]=id;
+              sendProgramme(res,far);                        
+              return false;
+
+      }).addTouch();
+
+
+
+      $('#inline2').append("<div class='dotted_spacer2'></div><span class=\"sub_title\">MORE LIKE THIS</span><br clear=\"both\"/>");
+
+      foo2();///???
 
       $.ajax({
-       url: get_related_url(id),
+       url: get_related_url(pid),
        dataType: "json",
          success: function(data){
-          recommendations(data,"progs2");
+           recommendations(data,"inline2",true,title);
          },
          error: function(jqXHR, textStatus, errorThrown){
          //alert("oh dear "+textStatus);
@@ -154,12 +262,29 @@ function insert_suggest2(id) {
 //get a random selection
 
 function do_random(el){
+  //console.log("RANDOM");
 
-  $("#rec_pane").html("<h3>Random selection</h3>");
+  $("#main_title").html("Random Selection");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+  
+ // $footer=$("#footer");
+//  $footer.css("top","850px");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("grey").addClass("blue");
+
 
   //id for element to add it to
   if(!el){
-    el = "progs";
+    el = "search_results";
   }
 
   $.ajax({
@@ -169,7 +294,7 @@ function do_random(el){
       random(data,el);
     },
     error: function(jqXHR, textStatus, errorThrown){
-    //console.log("nok "+textStatus);
+    console.log("nok "+textStatus);
     }
 
   });
@@ -213,13 +338,29 @@ function do_start(el,start_url){
 function do_search(txt){
 //console.log("search "+txt);
   txt = txt.toLowerCase();
-  $('#rec_pane').html("One moment please....");
+  $('#main_title').html("Search for '"+txt+"'");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+
+  $container=$("#browser");
+  $container.css("display","none");
+
+ // $footer=$("#footer");
+ // $footer.css("top","850px");
+
+  $browse=$("#browse");
+  $browse.addClass("blue").removeClass("grey");
+
+  $random=$("#random");
+  $random.addClass("grey").removeClass("blue");
+
 
   $.ajax({
     url: get_search_url(txt),
     dataType: "json",
     success: function(data){
-      search_results(data,txt,"inner");
+      search_results(data,txt,"search_results");
     },
     error: function(jqXHR, textStatus, errorThrown){
     //console.log("nok "+textStatus);
@@ -252,6 +393,8 @@ function capitalise(txt){
 function random(result,el){
 //pass to the common bit of processing
 
+//console.log(result);
+
   var suggestions = [];
 
   if(local_search){
@@ -262,20 +405,33 @@ function random(result,el){
       suggestions.push(result[rand]);
     }
   }else{
-     suggestions = result;
-
+    if(result && result["suggestions"]){
+      suggestions = result["suggestions"];//??
+    }else{
+      suggestions = result;
+      console.log("no results");
+    }
   }
 
-  process_json_results(suggestions,el);
+//randomise what we have
+  if(suggestions){
+      suggestions.sort(function() {return 0.5 - Math.random()});
+  }
+
+  process_json_results(suggestions,el,null,true);
 }
 
 
 //called when recommendations are returned
 
-function recommendations(result,el){
+function recommendations(result,el,add_stream,stream_title){
+
+console.log("in secs");
+console.log(result);
    if(!el){
      el = "progs2";
    }
+   if(result){
           var suggestions = result["suggestions"];
           var pid_title = result["title"];
           if(suggestions.length==0){
@@ -291,8 +447,25 @@ function recommendations(result,el){
             }else{
                $("#pane2").html("<h3>Related</h3>");
             }
-            process_json_results(suggestions,el,pid_title);
+            process_json_results(suggestions,el,pid_title,null,add_stream,stream_title);
           }
+    }else{
+//tmp@
+/*
+       var s = {    "pid": "b0074fpm",
+    "core_title": "Doctor Who - Series 2 - The Satan Pit",
+    "channel": "bbcthree",
+    "description": "As Rose battles the murderous Ood, the Doctor finds his beliefs challenged.",
+    "image": "http://dev.notu.be/2011/04/danbri/crawler/images/b0074fpm_512_288.jpg",
+    "series_title": "Doctor Who",
+    "date_time": "2010-10-03T18:00:00+00:00"};
+       var suggestions = [];
+       suggestions.push(s);
+       process_json_results(suggestions,el,pid_title,null,add_stream,title);
+*/
+console.log("OOPS!");
+
+    }
 }
 
 //handle inserted search results
@@ -320,12 +493,16 @@ function search_results(result,current_query,el){
    }
 //console.log("ls "+local_search);
 //console.log(result);
-          if(suggestions.length==0){
-               $("#rec_pane").html("<h3>Sorry, nothing found for "+current_query+"</h3>");
-               $("#"+el).html("");
+
+//console.log("xxxxx"+suggestions.length+" el "+el);
+          if(!suggestions || suggestions.length==0){
+               $("#"+el).html("<div class='sub_title' style='padding-top:26px;padding-left:8px'>Sorry, nothing found for '"+current_query+"'</div>   <div class='bluebutton'><a href='javascript:do_random()'>Give me a random selection</a></div>");
+               //$("#"+el).html("");
           }else{
                $("#rec_pane").html("<h3>Search results for "+current_query+"</h3>");
-               process_json_results(suggestions,el);
+               var replace_content=true;
+//console.log("ok");
+               process_json_results(suggestions,el,null,true);
           }
 
 }
@@ -334,14 +511,15 @@ function search_results(result,current_query,el){
 
 //process the results for displaying
 
-function process_json_results(suggestions,ele,pid_title){
+function process_json_results(suggestions,ele,pid_title,replace_content,add_stream,stream_title){
+console.log("adding stream");
+console.log("OK!"+suggestions.length);
 
-
-          var max = 10
+          var max = 12
           var s ="";
           var html = [];
 
-          if (suggestions.length>0){
+          if (suggestions && suggestions.length>0){
             var count = 0;
             var num = suggestions.length/2;
             for (r in suggestions){
@@ -357,11 +535,25 @@ function process_json_results(suggestions,ele,pid_title){
                 if(!id){
                   id = suggestions[r]["pid"];
                 }
+
                 var img = suggestions[r]["image"];
 
-                var video = suggestions[r]["video"];
                 var channel = suggestions[r]["channel"];
+                var date_time = suggestions[r]["date_time"];
+//console.log("dt "+date_time+" ch "+channel);
                 var time_offset = suggestions[r]["time_offset"];
+                //var video = suggestions[r]["video"];
+                var vid;
+//                if(!vid){
+                   if(date_time && channel){
+                     var dt = date_time.replace(":","-");
+                     dt = dt.replace(":","-");
+                     dt = dt.replace("T","/");
+                     dt = dt.replace("Z","");
+                     dt = dt.replace(/\+\d.*/,"");
+                     vid = "http://g.bbcredux.com/programme/"+channel+"/"+dt;
+                   }
+ //               }
 
                 var explanation = suggestions[r]["explanation"];
 
@@ -385,12 +577,12 @@ function process_json_results(suggestions,ele,pid_title){
 
 //processing for local files option
                 if(video_files){
-                    video = video_files+""+video;
+                    vid = video_files+""+vid;
                 }
 
 //processing for a particular form of time offsets
 //T00:18:31:15F25
-                if(video && time_offset){
+                if(vid && time_offset){
                    var offs = time_offset.replace(/T/,"")
                    var aa = offs.split(":");
                    var secs = parseInt(aa[1])*60+parseInt(aa[2]);
@@ -402,15 +594,22 @@ function process_json_results(suggestions,ele,pid_title){
 
 //console.log("id "+id+" title "+pid_title);
                 if(id){
-
+//                  if(!video){
+  //                   video=id;
+    //              }
+//console.log("id "+id+" video "+vid);
                   if(pid_title){
-                     html.push("<div id=\""+id+"\" href=\""+video+"\" class=\"ui-widget-content button draggable3\">");
+//                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button draggable5\">");
+                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme ui-draggable\">");
+                     html.push("<div class='grabby'></div>");
                   }else{
-                     html.push("<div id=\""+id+"\" href=\""+video+"\" class=\"ui-widget-content button draggable2\">");
+//                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button draggable2\">");
+//                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button draggable2\">");
+                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme\">");
+                     html.push("<div class='grabby'></div>");
                   }
-//                  html.push("<div><img class=\"img\" src=\""+img+"\" height=\"100\"/></div>");
                   html.push("<div><img class=\"img\" src=\""+img+"\" /></div>");
-                  html.push("<p class=\"p_title\">"+title+"</p>");
+                  html.push("<span class=\"p_title p_title_small\"><a href=''>"+title+"</a></span>");
                   html.push("<div clear=\"both\"></div>");
                   if(desc && desc!=""){
                     html.push("<span class=\"large description\">"+desc+"</span>");
@@ -418,11 +617,10 @@ function process_json_results(suggestions,ele,pid_title){
                   if(explanation && explanation!=""){
                     //see tidy_dbpedia.js
                     //idea is that the user doesn't need to see piles of junk
-                    explanation = clean_up(explanation);
-
+                    ///explanation = clean_up(explanation);
                     //i.s. if this is caled because it's related content, say why
-                    if(pid_title && explanation){
-                        html.push("<span class=\"explain\"><b>Related to "+pid_title+" by "+explanation+"</b></span>");
+                    if(explanation){
+                        html.push("<span class=\"explain large\">Recommended to you because "+explanation+"</span>");
                     }
 
                   }
@@ -436,8 +634,19 @@ function process_json_results(suggestions,ele,pid_title){
 
 
 //console.log("HTML "+html);
-            $("#"+ele).html(html.join(''));
-
+//console.log("..."+replace_content+" "+ele);
+           if(replace_content){
+              $("#"+ele).html(html.join(''));
+           }else{
+//console.log("html");
+//console.log(html);
+              $("#"+ele).append(html.join(''));
+           }
+           if(add_stream){
+              $("#side-c").prepend("<span class='sub_title'>Related to '"+stream_title+"'</span>\n<div class='slidey'>"+html.join('')+"</div>");
+           }
+          }else{
+            $("#"+ele).html('');
           }
 
 
@@ -451,10 +660,17 @@ function process_json_results(suggestions,ele,pid_title){
 //show disconnect overlay
 
 function show_disconnect(){
+   console.log("disconnecting");
+   disconn();
+//   $("#nick2").focus();
+   
+
+/*
 	$(function() {
 		$( "#disconnect_overlay" ).dialog({ maxHeight: 50 });
 	});
-
+*/
+//here
 }
     
 
@@ -466,6 +682,8 @@ console.log("name!!!!");
 //		$( "#ask_for_name_overlay" ).dialog({ maxHeight: 100 });
 //               $("#various1").trigger('click');
 foo();
+   $("#nick1").focus();
+
 	});
 
 }
@@ -486,132 +704,176 @@ function add_name(){
 
 }
 
+function remove_search_text(){
+  $("#search_text").attr("value","");
+}
+
+/*
+function toggle_notifications(){
+console.log("ex no ");
+console.log($("#notify_large"));
+  $("#notify_large").toggle(
+    function (){
+      $(this).show();
+    },
+    function (){
+      $(this).hide();
+    }
+
+  );
+//this isn;t right - needs to be set on the element itself on loading the page or something
+}
+*/
+function close_notifications(){
+  $("#notify_large").hide();
+}
+
 </script>
 
 
 
-
   <div id="header">
-    <h3 id='main_title'>Browse Programes</h3>
-    <span id="title"></span>
+    <span id='main_title'>Browse Programmes</span>
     <span class="form" >
       <form onsubmit='javascript:do_search(this.search_text.value);return false;'>
-<!--	<button onclick='javascript:do_random()' type="button">Shuffle!</button>-->
-	<input type="text" id="search_text" name="search_text" value="search programmes" />
-        <img src="images/search.png" width="10"/>
-<!--	<input name="search" value="Search" value="Search" type="submit"/>-->
+	<input type="text" id="search_text" name="search_text" value="search programmes" onclick="javascript:remove_search_text();return false;"/>
       </form>
      </span>
+  <div id="title"></div>
 
   </div>
 
        
 <br clear="both"/>
 
+  <div class="notifications_red" id="notify"></div>
+  <div class="notifications_red_large" id="notify_large" onclick="javascript:close_notifications();"></div>
+
+
 <div id="container">
 
+
+  <div id="inner">
+
+
+    <div id="browser">
+      <div id="side-b" class="slidey">
+        <span class="sub_title">SUGGESTIONS FOR YOU</span>
+        <div id="progs"> </div>
+      </div>
+
+      <br clear="both"/>
+
+      <div id="content" class="slidey">
+        <span class="sub_title">SHARED BY FRIENDS</span>
+        <div id="results">
+         <div class='dotted_box'></div>
+         <div class='dotted_box'></div>
+         <div class='dotted_box'></div>
+         <div class='dotted_box'></div>
+        </div>
+      </div>
+
+      <div id="content2" class="slidey">
+        <span class="sub_title">RECENTLY VIEWED</span>
+        <div id="history">
+          <div class='dotted_box'></div>
+          <div class='dotted_box'></div>
+          <div class='dotted_box'></div>
+          <div class='dotted_box'></div>
+        </div>
+      </div>
+
+            
+      <div id="side-c">
+      </div>
+    </div>
+
+    <div id="search_results">
+
+    </div>
+
+
+
+    <br clear="both" />
+
+  </div>
+
+</div>
 
 <div id="roster_wrapper">
   <div id="side-a">
     <div id="tv"></div>
       <br clear="both"/>
-      <h3>FRIENDS</h3>
+      <h3 class="contrast">YOUR FRIENDS</h3>
     <div id="roster"></div>
   </div>
 </div>
 
-<div id="inner">
+<div id="footer">
+  <div id="button_container">
 
-  <div id="side-b" class="slidey">
-    <h3>SUGGESTIONS FOR YOU</h3>
-<!--
-    <div class="ui-widget-content draggable2">
-        <div id="rec_pane"><h3>SUGGESTIONS FOR YOU</h3></div>
-    </div>
--->
-   <div id="progs">
-   </div>
+   <div id="browse" class="blue menu"><a href="javascript:init()">BROWSE PROGRAMMES</a></div>
+   <div id="random" class="grey menu"><a href="javascript:do_random()">RANDOM SELECTION</a></div>
+
   </div>
-
-<br clear="both"/>
-
-  <div id="content">
-    <h3>SHARED BY FRIENDS</h3>
-      <div id="results">
-       <div class='dotted_box'></div>
-       <div class='dotted_box'></div>
-       <div class='dotted_box'></div>
-       <div class='dotted_box'></div>
-      </div>
-  </div>
-
-  <div id="content">
-    <h3>RECENTLY VIEWED</h3>
-      <div id="history">
-       <div class='dotted_box'></div>
-       <div class='dotted_box'></div>
-       <div class='dotted_box'></div>
-       <div class='dotted_box'></div>
-      </div>
-  </div>
-
-            
-  <div id="side-c">
-    <div class="flatter ui-widget-content draggable3">
-        <div><h3><span id="pane2">Related</span></h3></div>
-    </div>
-   <div id="progs2">
-   </div>
-  </div>
-
-
- <br clear="both" />
-
 </div>
 
 
-<p><small>Status:
+
+<p style="display: none;"><small>Status:
 <span id="demo">
 <span id="out"></span>
 </span></small></p>
 
 
-<div class="simple_overlay" id="disconnect_overlay">
-        <!-- the external content is loaded inside this tag -->
-        <div class="contentWrap">
-	    <h2>Disconnected - <a href="javascript:location.reload(true)">Reload</a></h2>
-        </div>
-</div>
-
-
-<a style="display: none;" id="various1" href="#inline1" title="Please enter your name" class="simple_overlay">Inline</a>
+<a style="display: none;" id="various1" href="#inline1" class="simple_overlay">Inline</a>
 
         <div style="display: none;">
-                <div id="inline1" style="width:400px;height:100px;overflow:auto;">
-  	    <h2>What's your name?</h2>
-            <form onsubmit="javascript:add_name();return false;" id="myname">
-               <input type="text" name="nick"/>
-               <input type="submit" name="go" value="Start" />               
-            </form>
-                </div>
+            <div id="inline1">
+    	      <h2 id="inline1_sub"></h2>
+              <form onsubmit="javascript:add_name();return false;" id="myname">
+                 <input class="forminput" type="text" name="nick" id="nick1" spellcheck="false"  autocorrect="off"/>
+                  <br />
+                 <input class='bluesubmit' type="submit" name="go" value="Start" />               
+              </form>
+              </div>
         </div>
 
-<a style="display: none;" id="various2" href="#inline2" title="More Information" class="simple_overlay">Inline</a>
+<a style="display: none;" id="various2" href="#inline2" class="simple_overlay">Inline</a>
 
         <div style="display: none;">
-                <div id="inline2" style="width:600px;height:500px;overflow:auto;">
+                <div id="inline2" style="overflow:hidden;">
 
                 </div>
         </div>
 
 
+<a style="display: none;" id="various4" href="#inline4" class="simple_overlay">Inline</a>
 
-<!--	
-<div class="simple_overlay" id="ask_for_name_overlay">
-        <div class="contentWrap" id="inline1"  >
+        <div style="display: none;">
+                <div id="inline4" style="overflow:auto;">
+                </div>
         </div>
-</div>
+
+
+<!--
+<a style="display: none;" id="various4" href="#inline4" class="simple_overlay">Inline</a>
+
+        <div style="display: none;">
+                
+                <div id="inline4" style="overflow:auto;">
+              <h2>Sorry, you've been disconnected</h2>
+    	      <p>Sign in again:</p>
+              <form onsubmit="javascript:init();add_name();return false;" id="myname2">
+                 <input type="text" name="nick" id="nick2" autocomplete="off"/>
+                 <input type="submit" name="go" value="Start" />               
+              </form>
+                </div>
+        </div>
 -->
+
+
 
 
                 
