@@ -49,7 +49,7 @@ class Brain
   attr_reader :client, :roster, :get_url, :valid_user, :muc
 
   def initialize
-    self.server = "darth.local"
+    self.server = "jabber.notu.be"
     self.zid = "telly3"
     self.jid = "#{self.zid}@#{server}" #@@fixme for your server
     puts "jid #{self.jid}"
@@ -189,17 +189,12 @@ class Brain
                 seek(secs)
               end
               
-#              new_msg = Message::new(jid_fr,"{\"result\":\"ok\"}")
-#              new_msg.type=:chat
-#              @client.send(new_msg)
 # really there should be some error handling here @@
 # but in reality we have to wait for it to timeout
 # maybe send a provisional 'ok'?
                
 #talk to everyone else
               status = get_status()   
-#              p = Jabber::Presence.new(:chat,status)
-#              @client.send(p)
 
               puts "sending status 3"
               @muc.say(status)
@@ -212,14 +207,8 @@ class Brain
               
                 self.current_programme_title= "#{self.current_programme_title} failed to play "
 
- #               new_msg = Message::new(jid_fr,"{\"result\":\"nok\",\"error\":\"#{e}\"}")
- #               new_msg.type=:chat
- #               @client.send(new_msg)
-                
                 puts "sending status 4"
                 status = get_status()
-#                p = Jabber::Presence.new(:chat,status)
-#                @client.send(p)
                 @muc.say(status)
 
               end
@@ -230,27 +219,18 @@ class Brain
               
                 self.current_programme_title= "#{self.current_programme_title} failed to play"
 
-#                new_msg =Message::new(jid_fr,"{\"result\":\"nok\",\"error\":\"#{e}\"}")
-
-#                new_msg.type=:chat
-#                @client.send(new_msg)
-
                 status = get_status()
-#                p = Jabber::Presence.new(:chat,status)
-#                @client.send(p)
                 puts "sending status 5"
                 @muc.say(status)
 
               end
             end
-##
+
           else
 
             self.current_programme_title = "#{self.current_programme_title} failed to play"
 
             status = get_status()
-#            p = Jabber::Presence.new(:chat,status)
-#            @client.send(p)
 
             puts "sending status 6"
             @muc.say(status)
@@ -289,16 +269,11 @@ class Brain
 
   def get_url(url)    
    begin
-      puts "[1]"
       u = URI.parse(url)
-      puts "[1aa]"
-      puts "[1bb] #{CREDENTIALS}"
       res = Net::HTTP.post_form(u, CREDENTIALS)
-      puts "[1a]"
       puts res.body
       case res
       when Net::HTTPSuccess
-        puts "[2]"
         #str = File.open("redux_eg.html")
         #doc = Nokogiri::XML(str)
         doc = Nokogiri::XML(res.body)
