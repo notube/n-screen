@@ -46,6 +46,15 @@ function set_tmp_name(){
 
 function init(){
 
+//detect ipads etc
+   console.log("platform "+navigator.platform);
+   if(navigator.platform.indexOf("iPad") != -1){
+       $("#inner").addClass("inner_noscroll");
+       $(".slidey").addClass("slidey_noscroll");
+       $("#search_results").css("width","80%");
+   }else{
+     $("#inner").addClass("inner_scroll");
+   }
 
    $("#main_title").html("Browse Programmes");
 
@@ -146,6 +155,7 @@ function insert_suggest2(id) {
       $('#history').prepend(html.join(''));
 
       html2 = [];
+/*
       html2.push("<div id=\""+id+"_overlay\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content large_prog\">");
       html2.push("<img class=\"img\" src=\""+img+"\" />");
       html2.push("<div class=\"play_button\"><img src=\"images/play.png\" /></a></div>");
@@ -153,6 +163,18 @@ function insert_suggest2(id) {
       html2.push("<br clear=\"both\"/>");
       html2.push("<p class=\"description\">"+description+"</p>");
       html2.push("<p class=\"explain\">"+explanation+"</p>");
+      html2.push("</div>");
+*/
+
+      html2.push("<div class='close_button'><img src='images/close.png' width='20px' onclick='javascript:hide_overlay();'/></div>");
+      html2.push("<div id=\""+id+"_overlay\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content large_prog\">");
+      html2.push("<div style='float:left;'> <img class=\"img\" src=\""+img+"\" />");
+      html2.push("<div class=\"play_button\"><img src=\"images/play.png\" /></a></div></div>");
+      html2.push("<div style='padding-left:20px;padding-right:20px;'>");
+      html2.push("<div class=\"p_title_large\">"+title+"</div>");
+      html2.push("<p class=\"description\">"+description+"</p>");
+      html2.push("<p class=\"explain\">"+explanation+"</p></div>");
+      html2.push("<br clear=\"both\"/>");
       html2.push("</div>");
 
       $('#new_overlay').html(html2.join(''));
@@ -176,20 +198,128 @@ function insert_suggest2(id) {
       }).addTouch();
 
 
-      $('#new_overlay').append("<div class='dotted_spacer2'></div><span class=\"sub_title\">MORE LIKE THIS</span><br clear=\"both\"/>");
-
+      $('#new_overlay').append("<div class='dotted_spacer2'></div><span class=\"sub_title\">MORE LIKE THIS</span><span class=\"more_blue\"><a onclick=\"show_more('"+title+"','"+pid+"');\">View All</a></span><br clear=\"both\"/>");
 
       $.ajax({
        url: get_related_url(pid),
        dataType: "json",
          success: function(data){
-           recommendations(data,"new_overlay",true,title);
+           recommendations(data,"new_overlay",false,title);
          },
          error: function(jqXHR, textStatus, errorThrown){
          //alert("oh dear "+textStatus);
          }
       });
 
+}
+
+
+//show all recommendations
+function show_more_recommendations(){
+
+  $("#main_title").html("Suggestions For You");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("blue").addClass("grey");
+
+
+  $sr.empty();
+
+  do_start("search_results",start_url);
+
+}
+
+function show_shared(){
+
+  $("#main_title").html("Shared By Friends");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("blue").addClass("grey");
+
+  $sr.empty();
+
+//@@
+  $sr.html($("#results").clone());
+  $(document).trigger('refresh');
+  $(document).trigger('refresh_buttons');
+
+}
+
+function show_history(){
+
+  $("#main_title").html("Recently Viewed");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+
+  $sr.empty();
+
+//@@
+  $sr.html($("#history").clone());
+  $(document).trigger('refresh');
+  $(document).trigger('refresh_buttons');
+}
+
+
+function show_more(title,pid){
+
+console.log("[1] "+pid);
+
+  $("#main_title").html("Related to "+title);
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("blue").addClass("grey");
+
+//@@
+//  $sr.html($("#more").clone(true));
+  console.log("related url is "+get_related_url(pid));
+  $("#search_results").empty();
+
+      $.ajax({
+       url: get_related_url(pid),
+       dataType: "json",
+         success: function(data){
+           recommendations(data,"search_results",false,title);
+         },
+         error: function(jqXHR, textStatus, errorThrown){
+         //alert("oh dear "+textStatus);
+         }
+      });
+  hide_overlay();
 }
 
 
@@ -275,7 +405,7 @@ function do_search(txt){
   $container.css("display","none");
 
   $browse=$("#browse");
-  $browse.addClass("blue").removeClass("grey");
+  $browse.addClass("grey").removeClass("blue");
 
   $random=$("#random");
   $random.addClass("grey").removeClass("blue");
@@ -531,11 +661,11 @@ function process_json_results(suggestions,ele,pid_title,replace_content,add_stre
               }//end if count < max
             }
 
-
+console.log("[1]");
            if(replace_content){
               $("#"+ele).html(html.join(''));
            }else{
-              $("#"+ele).append(html.join(''));
+              $("#"+ele).append("<div id=\"more\">"+html.join('')+"</div>");
            }
            if(add_stream){
               $("#side-c").prepend("<span class='sub_title'>Related to '"+stream_title+"'</span>\n<div class='slidey'>"+html.join('')+"</div>");
@@ -637,7 +767,8 @@ function hide_overlay(){
 
     <div id="browser">
       <div id="side-b" class="slidey">
-        <span class="sub_title">SUGGESTIONS FOR YOU</span>
+        <span class="sub_title">SUGGESTIONS FOR YOU</span> 
+        <span class="more_blue"><a onclick='show_more_recommendations();'>View All</a></span>
         <div id="progs"> </div>
       </div>
 
@@ -645,20 +776,16 @@ function hide_overlay(){
 
       <div id="content" class="slidey">
         <span class="sub_title">SHARED BY FRIENDS</span>
+        <span class="more_blue"><a onclick='show_shared();'>View All</a></span>
         <div id="results">
-         <div class='dotted_box'></div>
-         <div class='dotted_box'></div>
-         <div class='dotted_box'></div>
          <div class='dotted_box'></div>
         </div>
       </div>
 
       <div id="content2" class="slidey">
         <span class="sub_title">RECENTLY VIEWED</span>
+        <span class="more_blue"><a  onclick='show_history();'>View All</a></span>
         <div id="history">
-          <div class='dotted_box'></div>
-          <div class='dotted_box'></div>
-          <div class='dotted_box'></div>
           <div class='dotted_box'></div>
         </div>
       </div>
@@ -707,16 +834,15 @@ function hide_overlay(){
 
 <!-- overlays -->
 
-<div id='new_overlay' style='display:none;'></div>
+<div id='new_overlay' style='display:none;'><div class='close_button'><img src='images/close.png'/></div></div>
 <div id='bg' style='display:none;' onclick='javascript:hide_overlay()'></div>
 
 
         
             <div id="ask_name" style="display: none;" class="alert">
-    	      <h2 id="inline1_sub">Please enter your name</h2>
+    	      <h2 id="inline1_sub">Please enter your name:</h2>
               <form onsubmit="javascript:add_name();return false;" id="myname">
                  <input class="forminput" type="text" name="nick" id="nick1" spellcheck="false"  autocorrect="off"/>
-                  <br />
                  <input class='bluesubmit' type="submit" name="go" value="Start" />               
               </form>
               </div>
@@ -725,13 +851,6 @@ function hide_overlay(){
                 
             <div id="disconnected" style="overflow:auto;display: none;" class="alert">
               <h2>Sorry, you've been disconnected - please reload the page.</h2>
-<!--
-    	      <p>Sign in again:</p>
-              <form onsubmit="javascript:init();add_name();return false;" id="myname2">
-                 <input type="text" name="nick" id="nick2" autocomplete="off"/>
-                 <input type="submit" name="go" value="Start" />               
-              </form>
--->
             </div>
 
 
