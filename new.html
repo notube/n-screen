@@ -47,8 +47,8 @@ function set_tmp_name(){
 function init(){
 
 //detect ipads etc
-   console.log("platform "+navigator.platform);
-   if(navigator.platform.indexOf("iPad") != -1){
+   //console.log("platform "+navigator.platform);
+   if(navigator.platform.indexOf("iPad") != -1 || navigator.platform.indexOf("Linux armv7l") != -1){
        $("#inner").addClass("inner_noscroll");
        $(".slidey").addClass("slidey_noscroll");
        $("#search_results").css("width","80%");
@@ -118,11 +118,11 @@ function init(){
   //notifications 
   $("#notify").toggle(
     function (){
-      console.log("SHOW");
+      //console.log("SHOW");
       $("#notify_large").show();
     },
     function (){
-      console.log("HIDE");
+      //console.log("HIDE");
       $("#notify_large").hide();
       $("#notify").html("");
       $("#notify_large").html("");
@@ -166,7 +166,7 @@ function insert_suggest2(id) {
       html2.push("</div>");
 */
 
-      html2.push("<div class='close_button'><img src='images/close.png' width='20px' onclick='javascript:hide_overlay();'/></div>");
+      html2.push("<div class='close_button'><img src='images/close.png' width='30px' onclick='javascript:hide_overlay();'/></div>");
       html2.push("<div id=\""+id+"_overlay\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content large_prog\">");
       html2.push("<div style='float:left;'> <img class=\"img\" src=\""+img+"\" />");
       html2.push("<div class=\"play_button\"><img src=\"images/play.png\" /></a></div></div>");
@@ -288,7 +288,7 @@ function show_history(){
 
 function show_more(title,pid){
 
-console.log("[1] "+pid);
+//console.log("[1] "+pid);
 
   $("#main_title").html("Related to "+title);
 
@@ -306,7 +306,7 @@ console.log("[1] "+pid);
 
 //@@
 //  $sr.html($("#more").clone(true));
-  console.log("related url is "+get_related_url(pid));
+  //console.log("related url is "+get_related_url(pid));
   $("#search_results").empty();
 
       $.ajax({
@@ -353,7 +353,7 @@ function do_random(el){
       random(data,el);
     },
     error: function(jqXHR, textStatus, errorThrown){
-    console.log("nok "+textStatus);
+    //console.log("nok "+textStatus);
     }
 
   });
@@ -462,7 +462,7 @@ function random(result,el){
       suggestions = result["suggestions"];//??
     }else{
       suggestions = result;
-      console.log("no results");
+      //console.log("no results");
     }
   }
 
@@ -514,7 +514,7 @@ function recommendations(result,el,add_stream,stream_title){
        suggestions.push(s);
        process_json_results(suggestions,el,pid_title,null,add_stream,title);
 */
-console.log("OOPS!");
+//console.log("OOPS!");
 
     }
 }
@@ -661,7 +661,7 @@ function process_json_results(suggestions,ele,pid_title,replace_content,add_stre
               }//end if count < max
             }
 
-console.log("[1]");
+//console.log("[1]");
            if(replace_content){
               $("#"+ele).html(html.join(''));
            }else{
@@ -683,7 +683,7 @@ console.log("[1]");
 //show disconnect overlay
 
 function show_disconnect(){
-   console.log("disconnecting");
+   //console.log("disconnecting");
 
    $('#disconnected').show();
    show_grey_bg();
@@ -707,7 +707,7 @@ function add_name(){
 
   var name = document.forms["myname"].nick.value;
 
-  console.log("adding name "+name);
+  //console.log("adding name "+name);
 
   if(name){
     my_name=name;

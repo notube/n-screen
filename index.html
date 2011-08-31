@@ -8,15 +8,10 @@
   <script type="text/javascript" src="lib/fix_date.js"></script>
   <script type="text/javascript" src="lib/jquery.ui.touch.js"></script>
 
-  <script type="text/javascript" src="lib/tidy_classification.js"></script>
   <script type="text/javascript" src="lib/strophe.js"></script>
-  <script type="text/javascript" src="lib/strophe.roster.js"></script>
-  <script type="text/javascript" src="lib/strophe_code.js"></script><!-- depends on jquery -->
+  <script type="text/javascript" src="lib/muc_code.js"></script><!-- depends on jquery -->
 
-
-  <link type="text/css" href="css/jquery-ui-1.8.10.custom.css" rel="Stylesheet" />
-  <link type="text/css" rel="stylesheet" href="css/3_col.css" >
-  <link type="text/css" rel="stylesheet" href="css/basic.css" />
+  <link type="text/css" rel="stylesheet" href="css/new.css" />
 
 <!-- workaround - http://stackoverflow.com/questions/2894230/fake-user-initiated-audio-tag-on-ipad -->
 
@@ -25,6 +20,7 @@
           document.getElementById("a1").load();
           document.getElementById("a2").load();
         }
+
   </script>
  </head>
 
@@ -40,17 +36,43 @@
 
 <script type="text/javascript">
 
+function set_tmp_name(){
+  var rand = Math.floor(Math.random()*9999)
+  //console.log("name!!! "+String(rand));
+  my_name="t_"+String(rand);
+  return my_name;
+}
+   
+
 function init(){
 
-   //load the start url or random if no start_url (see conf.js)
-   //get a random set of starting points
-   do_start("progs",start_url);
- 
+//detect ipads etc
+   //console.log("platform "+navigator.platform);
+   if(navigator.platform.indexOf("iPad") != -1 || navigator.platform.indexOf("Linux armv7l") != -1){
+       $("#inner").addClass("inner_noscroll");
+       $(".slidey").addClass("slidey_noscroll");
+       $("#search_results").css("width","80%");
+   }else{
+     $("#inner").addClass("inner_scroll");
+   }
+
+   $("#main_title").html("Browse Programmes");
+
+   $sr=$("#search_results");
+   $sr.css("display","none");
+   $container=$("#browser");
+   $container.css("display","block");
+
+   $browse=$("#browse");
+   $browse.addClass("blue").removeClass("grey");
+
+   $random=$("#random");
+   $random.addClass("grey").removeClass("blue");
+
    //gather up parameters
    //we expect "#" and then separated by "&"
    var pr = window.location.hash;
 
-   //alert(pr);
    pr_arr = pr.split("&");
 
    for(x in pr_arr){
@@ -59,6 +81,11 @@ function init(){
      if(pr.match("user_profile")){
          start_url=pr.substring(14);
      }
+
+     if(pr.match("random")){
+         start_url=random_url;
+     }
+
      if(pr.match("user_name")){
          my_name=pr.substring(11);
      }
@@ -74,14 +101,35 @@ function init(){
    }
 
 
+   //load the start url or random if no start_url (see conf.js)
+   //get a random set of starting points
+   do_start("progs",start_url);
+
    //ask the user for their name to continue
    //unless it's specified as a parameter
 
    if(!my_name || my_name==""){
         show_ask_for_name();
    }else{
-        ask_for_friendship(far);
+        $(document).trigger('send_name');
    }
+
+
+  //notifications 
+  $("#notify").toggle(
+    function (){
+      //console.log("SHOW");
+      $("#notify_large").show();
+    },
+    function (){
+      //console.log("HIDE");
+      $("#notify_large").hide();
+      $("#notify").html("");
+      $("#notify_large").html("");
+      $("#notify").hide();
+    }
+
+  );
 
 }
 
@@ -90,25 +138,73 @@ function init(){
 
 function insert_suggest2(id) {
       var div = $("#"+id);
+
       var title = div.find(".p_title").text();
       var description = div.find(".description").text();
+      var explanation = div.find(".explain").text();
       var video = div.attr("href");
+      var pid = div.attr("pid");
       var img = div.find(".img").attr("src");
+
       html = [];
-      html.push("<div id=\""+id+"_history\" href=\""+video+"\"  class=\"ui-widget-content button draggable2 newClass\">");
-      html.push("<img class=\"img\" src=\""+img+"\" height=\"100\"/>");
-      html.push("<p class=\"p_title\">"+title+"</p>");
-      html.push("<p class=\"description\">"+description+"</b></p>");
+      html.push("<div id=\""+id+"_history\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content button programme ui-draggable\">");
+      html.push("<img class=\"img\" src=\""+img+"\" />");
+      html.push("<span class=\"p_title\">"+title+"</span>");
+      html.push("<p class=\"description large\">"+description+"</b></p>");
       html.push("</div>");
       $('#history').prepend(html.join(''));
 
-      $('#pane2').html("One moment please....");
+      html2 = [];
+/*
+      html2.push("<div id=\""+id+"_overlay\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content large_prog\">");
+      html2.push("<img class=\"img\" src=\""+img+"\" />");
+      html2.push("<div class=\"play_button\"><img src=\"images/play.png\" /></a></div>");
+      html2.push("<span style='float:left;' class=\"p_title_large\">"+title+"</span>");
+      html2.push("<br clear=\"both\"/>");
+      html2.push("<p class=\"description\">"+description+"</p>");
+      html2.push("<p class=\"explain\">"+explanation+"</p>");
+      html2.push("</div>");
+*/
+
+      html2.push("<div class='close_button'><img src='images/close.png' width='30px' onclick='javascript:hide_overlay();'/></div>");
+      html2.push("<div id=\""+id+"_overlay\" pid=\""+pid+"\" href=\""+video+"\"  class=\"ui-widget-content large_prog\">");
+      html2.push("<div style='float:left;'> <img class=\"img\" src=\""+img+"\" />");
+      html2.push("<div class=\"play_button\"><img src=\"images/play.png\" /></a></div></div>");
+      html2.push("<div style='padding-left:20px;padding-right:20px;'>");
+      html2.push("<div class=\"p_title_large\">"+title+"</div>");
+      html2.push("<p class=\"description\">"+description+"</p>");
+      html2.push("<p class=\"explain\">"+explanation+"</p></div>");
+      html2.push("<br clear=\"both\"/>");
+      html2.push("</div>");
+
+      $('#new_overlay').html(html2.join(''));
+   
+      $('#new_overlay').show();  
+      show_grey_bg();
+
+
+      $( ".play_button" ).click(function() {
+              var res = {};
+              res["id"]=id;
+              res["pid"]=pid;
+              res["title"]=title;
+              res["video"]=video;
+              res["description"]=description;
+              res["explanation"]=explanation;
+              res["img"]=id;
+              sendProgramme(res,far);                        
+              return false;
+
+      }).addTouch();
+
+
+      $('#new_overlay').append("<div class='dotted_spacer2'></div><span class=\"sub_title\">MORE LIKE THIS</span><span class=\"more_blue\"><a onclick=\"show_more('"+title+"','"+pid+"');\">View All</a></span><br clear=\"both\"/>");
 
       $.ajax({
-       url: get_related_url(id),
+       url: get_related_url(pid),
        dataType: "json",
          success: function(data){
-          recommendations(data,"progs2");
+           recommendations(data,"new_overlay",false,title);
          },
          error: function(jqXHR, textStatus, errorThrown){
          //alert("oh dear "+textStatus);
@@ -117,15 +213,137 @@ function insert_suggest2(id) {
 
 }
 
+
+//show all recommendations
+function show_more_recommendations(){
+
+  $("#main_title").html("Suggestions For You");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("blue").addClass("grey");
+
+
+  $sr.empty();
+
+  do_start("search_results",start_url);
+
+}
+
+function show_shared(){
+
+  $("#main_title").html("Shared By Friends");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("blue").addClass("grey");
+
+  $sr.empty();
+
+//@@
+  $sr.html($("#results").clone());
+  $(document).trigger('refresh');
+  $(document).trigger('refresh_buttons');
+
+}
+
+function show_history(){
+
+  $("#main_title").html("Recently Viewed");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+
+  $sr.empty();
+
+//@@
+  $sr.html($("#history").clone());
+  $(document).trigger('refresh');
+  $(document).trigger('refresh_buttons');
+}
+
+
+function show_more(title,pid){
+
+//console.log("[1] "+pid);
+
+  $("#main_title").html("Related to "+title);
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("blue").addClass("grey");
+
+//@@
+//  $sr.html($("#more").clone(true));
+  //console.log("related url is "+get_related_url(pid));
+  $("#search_results").empty();
+
+      $.ajax({
+       url: get_related_url(pid),
+       dataType: "json",
+         success: function(data){
+           recommendations(data,"search_results",false,title);
+         },
+         error: function(jqXHR, textStatus, errorThrown){
+         //alert("oh dear "+textStatus);
+         }
+      });
+  hide_overlay();
+}
+
+
 //get a random selection
 
 function do_random(el){
 
-  $("#rec_pane").html("<h3>Random selection</h3>");
+  $("#main_title").html("Random Selection");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+  
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.removeClass("blue").addClass("grey");
+
+  $random=$("#random");
+  $random.removeClass("grey").addClass("blue");
 
   //id for element to add it to
   if(!el){
-    el = "progs";
+    el = "search_results";
   }
 
   $.ajax({
@@ -154,7 +372,6 @@ function do_start(el,start_url){
   }
 
   if(start_url){
-    $("#rec_pane").html("<h3>Starting Points</h3>");
 
     $.ajax({
       url: start_url,
@@ -177,14 +394,28 @@ function do_start(el,start_url){
 //search for txt
        
 function do_search(txt){
+
   txt = txt.toLowerCase();
-  $('#rec_pane').html("One moment please....");
+  $('#main_title').html("Search for '"+txt+"'");
+
+  $sr=$("#search_results");
+  $sr.css("display","block");
+
+  $container=$("#browser");
+  $container.css("display","none");
+
+  $browse=$("#browse");
+  $browse.addClass("grey").removeClass("blue");
+
+  $random=$("#random");
+  $random.addClass("grey").removeClass("blue");
+
 
   $.ajax({
-    url: get_search_url(),
+    url: get_search_url(txt),
     dataType: "json",
     success: function(data){
-      search_results(data,txt,"progs");
+      search_results(data,txt,"search_results");
     },
     error: function(jqXHR, textStatus, errorThrown){
     //console.log("nok "+textStatus);
@@ -227,20 +458,31 @@ function random(result,el){
       suggestions.push(result[rand]);
     }
   }else{
-     suggestions = result;
-
+    if(result && result["suggestions"]){
+      suggestions = result["suggestions"];//??
+    }else{
+      suggestions = result;
+      //console.log("no results");
+    }
   }
 
-  process_json_results(suggestions,el);
+//randomise what we have
+  if(suggestions){
+      suggestions.sort(function() {return 0.5 - Math.random()});
+  }
+
+  process_json_results(suggestions,el,null,true);
 }
 
 
 //called when recommendations are returned
 
-function recommendations(result,el){
+function recommendations(result,el,add_stream,stream_title){
+
    if(!el){
      el = "progs2";
    }
+   if(result){
           var suggestions = result["suggestions"];
           var pid_title = result["title"];
           if(suggestions.length==0){
@@ -256,12 +498,29 @@ function recommendations(result,el){
             }else{
                $("#pane2").html("<h3>Related</h3>");
             }
-            process_json_results(suggestions,el,pid_title);
+            process_json_results(suggestions,el,pid_title,null,add_stream,stream_title);
           }
+    }else{
+//tmp@@ for when offline
+/*
+       var s = {    "pid": "b0074fpm",
+    "core_title": "Doctor Who - Series 2 - The Satan Pit",
+    "channel": "bbcthree",
+    "description": "As Rose battles the murderous Ood, the Doctor finds his beliefs challenged.",
+    "image": "http://dev.notu.be/2011/04/danbri/crawler/images/b0074fpm_512_288.jpg",
+    "series_title": "Doctor Who",
+    "date_time": "2010-10-03T18:00:00+00:00"};
+       var suggestions = [];
+       suggestions.push(s);
+       process_json_results(suggestions,el,pid_title,null,add_stream,title);
+*/
+//console.log("OOPS!");
+
+    }
 }
 
-//handle inserted search results
 
+//handle inserted search results
 function search_results(result,current_query,el){
    if(!el){
      el = "progs";
@@ -284,13 +543,13 @@ function search_results(result,current_query,el){
       suggestions = result;
    }
 
-          if(suggestions.length==0){
-               $("#rec_pane").html("<h3>Sorry, nothing found for "+current_query+"</h3>");
-               $("#"+el).html("");
-          }else{
-               $("#rec_pane").html("<h3>Search results for "+current_query+"</h3>");
-               process_json_results(suggestions,el);
-          }
+   if(!suggestions || suggestions.length==0){
+      $("#"+el).html("<div class='sub_title' style='padding-top:26px;padding-left:8px'>Sorry, nothing found for '"+current_query+"'</div>   <div class='bluebutton'><a href='javascript:do_random()'>Give me a random selection</a></div>");
+   }else{
+      $("#rec_pane").html("<h3>Search results for "+current_query+"</h3>");
+      var replace_content=true;
+      process_json_results(suggestions,el,null,true);
+   }
 
 }
 
@@ -298,26 +557,44 @@ function search_results(result,current_query,el){
 
 //process the results for displaying
 
-function process_json_results(suggestions,ele,pid_title){
+function process_json_results(suggestions,ele,pid_title,replace_content,add_stream,stream_title){
 
-          var max = 10
+          var max = 12
           var s ="";
           var html = [];
 
-          if (suggestions.length>0){
+          if (suggestions && suggestions.length>0){
             var count = 0;
             var num = suggestions.length/2;
             for (r in suggestions){
               if(count<max){
                 count = count + 1;
-                var title = suggestions[r]["title"];
+                var title = suggestions[r]["core_title"];//@@
+                if(!title){
+                  title = suggestions[r]["title"];
+                }
+
                 var desc = suggestions[r]["description"];
                 var id = suggestions[r]["id"];
+                if(!id){
+                  id = suggestions[r]["pid"];
+                }
+
                 var img = suggestions[r]["image"];
 
-                var video = suggestions[r]["video"];
                 var channel = suggestions[r]["channel"];
+                var date_time = suggestions[r]["date_time"];
+
                 var time_offset = suggestions[r]["time_offset"];
+                var vid;
+                if(date_time && channel){
+                     var dt = date_time.replace(":","-");
+                     dt = dt.replace(":","-");
+                     dt = dt.replace("T","/");
+                     dt = dt.replace("Z","");
+                     dt = dt.replace(/\+\d.*/,"");
+                     vid = "http://g.bbcredux.com/programme/"+channel+"/"+dt;
+                }
 
                 var explanation = suggestions[r]["explanation"];
 
@@ -341,12 +618,12 @@ function process_json_results(suggestions,ele,pid_title){
 
 //processing for local files option
                 if(video_files){
-                    video = video_files+""+video;
+                    vid = video_files+""+vid;
                 }
 
 //processing for a particular form of time offsets
 //T00:18:31:15F25
-                if(video && time_offset){
+                if(vid && time_offset){
                    var offs = time_offset.replace(/T/,"")
                    var aa = offs.split(":");
                    var secs = parseInt(aa[1])*60+parseInt(aa[2]);
@@ -354,15 +631,14 @@ function process_json_results(suggestions,ele,pid_title){
                 }
 
 
-                if(video && id){
-
+                if(id){
                   if(pid_title){
-                     html.push("<div id=\""+id+"\" href=\""+video+"\" class=\"ui-widget-content button draggable3\">");
+                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme ui-draggable\">");
                   }else{
-                     html.push("<div id=\""+id+"\" href=\""+video+"\" class=\"ui-widget-content button draggable2\">");
+                     html.push("<div id=\""+id+"\" pid=\""+id+"\" href=\""+vid+"\" class=\"ui-widget-content button programme\">");
                   }
-                  html.push("<div><img class=\"img\" src=\""+img+"\" height=\"100\"/></div>");
-                  html.push("<p class=\"p_title\">"+title+"</p>");
+                  html.push("<div><img class=\"img\" src=\""+img+"\" /></div>");
+                  html.push("<span class=\"p_title p_title_small\"><a href=''>"+title+"</a></span>");
                   html.push("<div clear=\"both\"></div>");
                   if(desc && desc!=""){
                     html.push("<span class=\"large description\">"+desc+"</span>");
@@ -370,11 +646,10 @@ function process_json_results(suggestions,ele,pid_title){
                   if(explanation && explanation!=""){
                     //see tidy_dbpedia.js
                     //idea is that the user doesn't need to see piles of junk
-                    explanation = clean_up(explanation);
-
+                    ///explanation = clean_up(explanation);
                     //i.s. if this is caled because it's related content, say why
-                    if(pid_title && explanation){
-                        html.push("<span class=\"explain\"><b>Related to "+pid_title+" by "+explanation+"</b></span>");
+                    if(explanation){
+                        html.push("<span class=\"explain large\">Recommended to you because "+explanation+"</span>");
                     }
 
                   }
@@ -386,13 +661,20 @@ function process_json_results(suggestions,ele,pid_title){
               }//end if count < max
             }
 
-            $("#"+ele).html(html.join(''));
-
+//console.log("[1]");
+           if(replace_content){
+              $("#"+ele).html(html.join(''));
+           }else{
+              $("#"+ele).append("<div id=\"more\">"+html.join('')+"</div>");
+           }
+           if(add_stream){
+              $("#side-c").prepend("<span class='sub_title'>Related to '"+stream_title+"'</span>\n<div class='slidey'>"+html.join('')+"</div>");
+           }
+          }else{
+            $("#"+ele).html('');
           }
 
 
-//   $(".button").unbind('refresh');
-//   $(".button").unbind('refresh_buttons');
    $(document).trigger('refresh');
    $(document).trigger('refresh_buttons');
 }
@@ -401,9 +683,11 @@ function process_json_results(suggestions,ele,pid_title){
 //show disconnect overlay
 
 function show_disconnect(){
-	$(function() {
-		$( "#disconnect_overlay" ).dialog({ maxHeight: 50 });
-	});
+   //console.log("disconnecting");
+
+   $('#disconnected').show();
+   show_grey_bg();
+   $("#nick1").focus();
 
 }
     
@@ -411,111 +695,167 @@ function show_disconnect(){
 //ask the user for their name
 
 function show_ask_for_name(){
-	$(function() {
-		$( "#ask_for_name_overlay" ).dialog({ maxHeight: 100 });
-	});
+
+   $('#ask_name').show();
+   show_grey_bg();
+   $("#nick1").focus();
 
 }
     
 
 function add_name(){
+
   var name = document.forms["myname"].nick.value;
+
+  //console.log("adding name "+name);
+
   if(name){
     my_name=name;
-//??trigger
     $(document).trigger('send_name');
+    $("#ask_name").hide();
+    $("#bg").hide();
   }
-  $(function() {
-      $( "#ask_for_name_overlay" ).dialog("close");
-  });
 
 }
+
+function remove_search_text(){
+  $("#search_text").attr("value","");
+}
+
+function close_notifications(){
+  $("#notify_large").hide();
+}
+
+function show_grey_bg(){
+ $("#bg").show();
+}
+
+function hide_overlay(){
+ $("#bg").hide();
+ $("#new_overlay").hide();
+          
+}
+
 
 </script>
 
 
 
-<div id="roster_wrapper">
-  <div id="side-a">
-    <div id="roster"></div>
-  </div>
-</div>
-
-<br clear="both"/>
-
-<div>
   <div id="header">
-    <span id="title">Hello! Please wait a sec...</span>
-
+    <span id='main_title'>Browse Programmes</span>
     <span class="form" >
       <form onsubmit='javascript:do_search(this.search_text.value);return false;'>
-	<button onclick='javascript:do_random()' type="button">Shuffle!</button>
-	<input type="text" id="search_text" name="search_text" />
-	<input name="search" value="Search" value="Search" type="submit"/>
+	<input type="text" id="search_text" name="search_text" value="search programmes" onclick="javascript:remove_search_text();return false;"/>
       </form>
      </span>
+  <div id="title"></div>
 
   </div>
-</div>
-        
 
+       
 <br clear="both"/>
+
+  <div class="notifications_red" id="notify"></div>
+  <div class="notifications_red_large" id="notify_large" onclick="javascript:close_notifications();"></div>
+
 
 <div id="container">
 
 
-  <div id="side-b">
-    <div class="ui-widget-content draggable2">
-        <div id="rec_pane"><h3>Random Starting points</h3></div>
-    </div>
-   <div id="progs">
-   </div>
-  </div>
+  <div id="inner">
 
-  <div id="content">
-      <div class="flatter_sm ui-widget-content draggable2">
-        <div><h3>History</h3></div>
+
+    <div id="browser">
+      <div id="side-b" class="slidey">
+        <span class="sub_title">SUGGESTIONS FOR YOU</span> 
+        <span class="more_blue"><a onclick='show_more_recommendations();'>View All</a></span>
+        <div id="progs"> </div>
       </div>
-      <div id="history">
+
+      <br clear="both"/>
+
+      <div id="content" class="slidey">
+        <span class="sub_title">SHARED BY FRIENDS</span>
+        <span class="more_blue"><a onclick='show_shared();'>View All</a></span>
+        <div id="results">
+         <div class='dotted_box'></div>
+        </div>
       </div>
-  </div>
+
+      <div id="content2" class="slidey">
+        <span class="sub_title">RECENTLY VIEWED</span>
+        <span class="more_blue"><a  onclick='show_history();'>View All</a></span>
+        <div id="history">
+          <div class='dotted_box'></div>
+        </div>
+      </div>
+
             
-  <div id="side-c">
-    <div class="flatter ui-widget-content draggable3">
-        <div><h3><span id="pane2">Related</span></h3></div>
+      <div id="side-c">
+      </div>
     </div>
-   <div id="progs2">
-   </div>
+
+    <div id="search_results">
+
+    </div>
+
+
+
+    <br clear="both" />
+
   </div>
 
+</div>
 
- <br clear="both" />
+<div id="roster_wrapper">
+  <div id="side-a">
+    <div id="tv"></div>
+      <br clear="both"/>
+      <h3 class="contrast">YOUR FRIENDS</h3>
+    <div id="roster"></div>
+  </div>
+</div>
 
-<p><small>Status:
+<div id="footer">
+  <div id="button_container">
+
+   <div id="browse" class="blue menu"><a href="javascript:init()">BROWSE PROGRAMMES</a></div>
+   <div id="random" class="grey menu"><a href="javascript:do_random()">RANDOM SELECTION</a></div>
+
+  </div>
+</div>
+
+
+
+<p style="display: none;"><small>Status:
 <span id="demo">
 <span id="out"></span>
 </span></small></p>
 
+<!-- overlays -->
 
-<div class="simple_overlay" id="disconnect_overlay">
-        <!-- the external content is loaded inside this tag -->
-        <div class="contentWrap">
-	    <h2>Disconnected - <a href="javascript:location.reload(true)">Reload</a></h2>
-        </div>
-</div>
+<div id='new_overlay' style='display:none;'><div class='close_button'><img src='images/close.png'/></div></div>
+<div id='bg' style='display:none;' onclick='javascript:hide_overlay()'></div>
 
-<div class="simple_overlay" id="ask_for_name_overlay">
-        <div class="contentWrap">
-	    <h2>What's your name?</h2>
-            <form onsubmit="javascript:add_name();return false;" id="myname">
-               <input type="text" name="nick"/>
-               <input type="submit" name="go" value="Start" />               
-            </form>
-        </div>
-</div>
+
+        
+            <div id="ask_name" style="display: none;" class="alert">
+    	      <h2 id="inline1_sub">Please enter your name:</h2>
+              <form onsubmit="javascript:add_name();return false;" id="myname">
+                 <input class="forminput" type="text" name="nick" id="nick1" spellcheck="false"  autocorrect="off"/>
+                 <input class='bluesubmit' type="submit" name="go" value="Start" />               
+              </form>
+              </div>
+        
+
+                
+            <div id="disconnected" style="overflow:auto;display: none;" class="alert">
+              <h2>Sorry, you've been disconnected - please reload the page.</h2>
+            </div>
 
 
 </body>
 </html>
+
 
 
