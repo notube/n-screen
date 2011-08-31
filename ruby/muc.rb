@@ -41,22 +41,19 @@ class Brain
   }
   history=nil
 
-#  attr_accessor :jid, :password, :fake_roster, :current_programme, :current_programme_title, 
-#:current_programme_id, :history, :zid, :server
-
   attr_accessor :jid, :password, :fake_roster, :current_programme, :current_programme_title, :current_programme_source_id, :current_programme_nick, :current_programme_pid, :current_programme_id, :history, :zid, :server, :current_programme_image, :current_programme_description
 
   attr_reader :client, :roster, :get_url, :valid_user, :muc
 
   def initialize
-    self.server = "jabber.notu.be"
-    self.zid = "telly3"
+    self.server = ""
+    self.zid = "telly"
     self.jid = "#{self.zid}@#{server}" #@@fixme for your server
     puts "jid #{self.jid}"
     self.password = ""
     @client = Client.new(self.jid)
     self.fake_roster = {}
-#    Jabber::debug = true
+#   Jabber::debug = true
     self.history = {}
     connect
   end
@@ -67,12 +64,6 @@ class Brain
     @accept_subscriptions = true
     @client.auth(@password)
     @client.send(Presence.new.set_type(:available))
-
-    #the "roster" is our bot contact list
-#    @roster = Roster::Helper.new(@client)
-
-#    start_presence_callback
-#    start_subscription_request_callback
 
      # create multi-user chat
      puts "about to create MUC"
@@ -131,6 +122,22 @@ class Brain
       puts "prog url #{programme_url}"
 
       m = "url incorrect"
+      locals={
+       "http://g.bbcredux.com/programme/bbcthree/2010-10-01/23-20-00"=>
+       "file:///Users/notube/Movies/bbcthree_2010-10-01_23-20-00.mpg",
+       "http://g.bbcredux.com/programme/bbcone/2010-02-19/23-45-00"=>
+       "file:///Users/notube/Movies/bbcone_2010-02-19_23-45-00.mpg",
+       "http://g.bbcredux.com/programme/bbcthree/2007-11-30/20-00-00"=>
+       "file:///Users/notube/Movies/bbcthree_2007-11-30_20-00-00.mpg",
+       "http://g.bbcredux.com/programme/bbcthree/2011-02-19/21-00-00"=>
+       "file:///Users/notube/Movies/bbcthree_2011-02-19_21-00-00.mpg",
+       "http://g.bbcredux.com/programme/bbcone/2009-08-28/21-40-00"=>
+       "file:///Users/notube/Movies/bbcone_2009-08-28_21-40-00.mpg",
+       "http://g.bbcredux.com/programme/bbctwo/2007-10-27/18-20-00"=>
+       "file:///Users/notube/Movies/bbctwo_2007-10-27_18-20-00.mpg",
+       "http://g.bbcredux.com/programme/bbcfour/2010-05-17/18-30-00"=>
+       "file:///Users/notube/Movies/bbcfour_2010-05-17_18-30-00.mpg"
+      }
 
       if programme_url
 # at this point one can find or derive the playable url from other data
@@ -145,27 +152,34 @@ class Brain
           self.current_programme_image = j["image"]
           self.current_programme_description = j["description"]
           m = nil
+          puts "ok #{programme_url}"
           if(!self.history[programme_url])
-            u = CREDENTIALS['username']
-            p = CREDENTIALS['password']  
-            puts "no id in history #{u} #{p}"
-#            self.history[programme_url]=programme_url
-#            m = self.history[programme_url]
-            if(valid_user(CREDENTIALS['username'],CREDENTIALS['password']))
-              puts "getting redux"
-              m = get_url(programme_url)
-              puts "m is #{m}"
+            puts "looking for prog url #{programme_url} ... #{locals[programme_url]}" 
+            if(locals[programme_url]) #our special local list
+              puts "getting a local file using #{programme_url}"
+              m = locals[programme_url]
+              puts "m2 is #{m}"
               if(m)
                 self.history[programme_url]=m
-               #self.current_programme = m
               end
             else
-              puts "invalid redux user"
+              u = CREDENTIALS['username']
+              p = CREDENTIALS['password']  
+              puts "no id in history #{u} #{p}"
+              if(valid_user(CREDENTIALS['username'],CREDENTIALS['password']))
+                puts "getting redux"
+                m = get_url(programme_url)
+                puts "m is #{m}"
+                if(m)
+                  self.history[programme_url]=m
+                end
+              else
+                puts "invalid redux user"
+              end
             end
           else
             m = self.history[programme_url]
           end
-#          self.current_programme = m
       
           puts "M is ...#{m},,"
           if(m && m!="")
@@ -195,7 +209,6 @@ class Brain
                
 #talk to everyone else
               status = get_status()   
-
               puts "sending status 3"
               @muc.say(status)
 
@@ -225,7 +238,7 @@ class Brain
 
               end
             end
-
+##
           else
 
             self.current_programme_title = "#{self.current_programme_title} failed to play"
@@ -271,7 +284,6 @@ class Brain
    begin
       u = URI.parse(url)
       res = Net::HTTP.post_form(u, CREDENTIALS)
-      puts res.body
       case res
       when Net::HTTPSuccess
         #str = File.open("redux_eg.html")
@@ -288,7 +300,7 @@ class Brain
       end
     rescue Exception => f
       puts f
-      puts "YYYYYY problem"
+      puts "problem"
       return nil  
     end
 
