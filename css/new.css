@@ -34,11 +34,11 @@ body{
 
 .dotted_box{
   width:216px;
-  margin-top:20px;margin-bottom:10px;margin-left:20px;
+  margin-top:10px;margin-bottom:10px;margin-left:20px;
   border: 2px dashed #2B383F;
   height: 125px;
   padding-left: 12px; 
-  padding-bottom:30px;
+#  padding-bottom:30px;
   border-color:#2B383F;
   float:left;
 }
