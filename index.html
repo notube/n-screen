@@ -10,6 +10,7 @@
 
   <script type="text/javascript" src="lib/strophe.js"></script>
   <script type="text/javascript" src="lib/muc_code.js"></script><!-- depends on jquery -->
+  <script type="text/javascript" src="lib/spin.min.js"></script>
 
   <link type="text/css" rel="stylesheet" href="css/new.css" />
 
@@ -133,6 +134,18 @@ function init(){
 
 }
 
+//http://fgnass.github.com/spin.js/
+var opts = {
+  lines: 12, // The number of lines to draw
+  length: 5, // The length of each line
+  width: 3, // The line thickness
+  radius: 5, // The radius of the inner circle
+  color: '#fff', // #rbg or #rrggbb
+  speed: 1, // Rounds per second
+  trail: 100, // Afterglow percentage
+  shadow: true // Whether to render a shadow
+};
+
 
 //display suggestions based on id
 
@@ -200,13 +213,18 @@ function insert_suggest2(id) {
       }).addTouch();
 
 
-      $('#new_overlay').append("<div class='dotted_spacer2'></div><span class=\"sub_title\">MORE LIKE THIS</span><span class=\"more_blue\"><a onclick=\"show_more('"+title+"','"+pid+"');\">View All</a></span><br clear=\"both\"/>");
+      $('#new_overlay').append("<div class='dotted_spacer2'></div><span class=\"sub_title\">MORE LIKE THIS</span><span class=\"more_blue\"><a onclick=\"show_more('"+title+"','"+pid+"');\">View All</a></span>");
+      $('#new_overlay').append("<br clear=\"both\"/>");
+      $('#new_overlay').append("<div id='spinner'></div>");
+      var target = document.getElementById('spinner');//??
+      var spinner = new Spinner(opts).spin(target);
 
       $.ajax({
        url: get_related_url(pid),
        dataType: "json",
          success: function(data){
-           recommendations(data,"new_overlay",false,title);
+           recommendations(data,"spinner",false,title);
+//           recommendations(data,"new_overlay",false,title);
          },
          error: function(jqXHR, textStatus, errorThrown){
          //alert("oh dear "+textStatus);
@@ -500,7 +518,8 @@ function recommendations(result,el,add_stream,stream_title){
             }else{
                $("#pane2").html("<h3>Related</h3>");
             }
-            process_json_results(suggestions,el,pid_title,null,add_stream,stream_title);
+//            process_json_results(suggestions,el,pid_title,null,add_stream,stream_title);
+            process_json_results(suggestions,el,pid_title,true,add_stream,stream_title);
           }
     }else{
 //tmp@@ for when offline
@@ -737,6 +756,7 @@ function hide_overlay(){
  $("#new_overlay").hide();
           
 }
+
 
 
 </script>

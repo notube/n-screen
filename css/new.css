@@ -449,6 +449,7 @@ h2{
   width:80%;
   color:white;
   background-color:black;
+  min-height:400px;
   z-index:10;
 }
 
@@ -521,3 +522,5 @@ h2{
   color:#3198C4;
 }
 
+#spinner{
+}
