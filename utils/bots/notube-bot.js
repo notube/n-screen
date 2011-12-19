@@ -1,0 +1,132 @@
+#!/usr/bin/env node
+
+// Basic XMPP bot using node.js for NoTube NScreen / Buttons sharing
+//
+// Dan Brickley <danbri@danbri.org> w/ a load of help from Libby Miller as usual
+//
+//  To use, check config is OK and password is accessible, then `node notube_bot.js`
+//  See NScreen Web UI at http://nscreen.notu.be/testing/ or connect via PSI desktop app for debugging.
+//
+// This is a Javascript utility written for Node.js, that connects to NoTube's NScreen MUC (multi-user chat)
+// service. It shows up there alongside human participants, and can listen to group and individual messages.
+// If you drag an item to it, it can study that item and send back a response, individually or to group.
+//
+// Initial behaviour is a simple echo; items sent will be returned to the entire group.
+// Other ideas: 
+//  * more-like-this (using Mahout's similarity measures).
+//  * a bookwork persona; send back links to books 
+//  * DVD Extras: send back other info, eg. youtube video interview with cast or director or writer
+//  * Invent your own, customise and run your own bot.
+// 
+// Questions: can we have custom icons? what variety of item types are understood in NScreen UI? Channels vs shows?
+
+// based on https://raw.github.com/gist/940969/413b5601292df26e06f325cbd6e3944a728fb590/hipchat_bot.js
+// also for exec'ing, npm install node-ffi might be useful (to query SQL etc on commandline?)
+// http://stackoverflow.com/questions/4443597/node-js-execute-system-command-synchronously
+// Requires: https://github.com/astro/node-stringprep
+
+var request = require('request'); // github.com/mikeal/request
+var sys = require('sys');
+var util = require('util');
+var xmpp = require('node-xmpp');
+
+// shell hacks
+var FFI = require("node-ffi");
+var libc = new FFI.Library(null, {
+  "system": ["int32", ["string"]]
+});
+var run = libc.system;
+
+
+// Config
+//var jid = "bob.notube@gmail.com"
+var jid = "bob@jabber.notu.be"					// An XMPP JID that can talk in the MUC room
+var password = process.env.NOTUBEPASS // or however...		// Password for the XMPP account we're using
+var room_jid = "default_muc11@conference.jabber.notu.be"	// XMPP MUC room we're connecting to
+var room_nick = "tellyclub" 					// our nickname in NScreen room 
+
+var hello = '{"name":"'+ room_nick +'","obj_type":"person","id":"'+ room_nick +'","suggestions":[],"shared":[],"history":[]}';
+
+var cl = new xmpp.Client({
+  jid: jid + '/bot',
+  password: password
+});
+
+// Log all data received
+//cl.on('data', function(d) {
+//  util.log("[data in] " + d);
+//});
+
+// Once connected, set available presence and join room
+cl.on('online', function() {
+  util.log("We're online!");
+
+  // set ourselves as online
+  cl.send(new xmpp.Element('presence', { type: 'available' }).
+    c('show').t('chat')
+   );
+
+  // join room (and request no chat history)
+  cl.send(new xmpp.Element('presence', { to: room_jid+'/'+room_nick }).
+    c('x', { xmlns: 'http://jabber.org/protocol/muc' })
+  );
+
+   var hello = "{\"name\":\""	+ room_nick + "\",\"obj_type\":\"person\",\"id\":\"" + room_nick + "\",\"suggestions\":[],\"shared\":[],\"history\":[]}";
+   var msg = { to: room_jid, type: 'groupchat' };
+   cl.send(new xmpp.Element('message', msg ).c('body').t( hello ));
+ 
+
+  // send keepalive data or server will disconnect us after 150s of inactivity
+  setInterval(function() {
+    cl.send(' ');
+  }, 30000);
+});
+
+
+
+cl.on('stanza', function(stanza) {
+  // always log error stanzas
+  if (stanza.attrs.type == 'error') {
+    util.log('[error] ' + stanza);
+    return;
+  }
+
+  // ignore everything that isn't a room message
+  if (!stanza.is('message') || !stanza.attrs.type == 'groupchat') {
+    return;
+  }
+
+  // ignore messages we sent
+  if (stanza.attrs.from == room_jid+'/'+room_nick) {
+    return;
+  }
+
+
+  var body = stanza.getChild('body');
+  // message without body is probably a topic change
+  if (!body) {
+    return;
+  }
+  var message = body.getText();
+  inMsg = JSON.parse(message);
+
+  // e.g.  {"id":"b017z1kn","pid":"b017z1kn","video":"undefined","image":"http://www.bbc.co.uk/iplayer/images/episode/b017z1kn_303_170.jpg","title":"Top Gear USA: Episode 9","description":"The guys set out to answer the question of which is America's toughest truck in Alaska.","explanation":"Recommended because you watched Top Gear USA which also has Tanner Foust in it"}
+  // or {"name":"fakeLibbyMiller","obj_type":"person","id":"fakeLibbyMiller","suggestions":[],"shared":[],"history":[]}
+  console.log("INFO: Got incoming msg from "+stanza.attrs.from);
+  console.log("FULL: "+message);
+  console.log("msg type: "+inMsg.obj_type);    // could be a person
+  if (inMsg.obj_type == 'person') {
+    // We have a new buddy in the group, e.g. {"name":"danko2","obj_type":"person","id":"danko2","suggestions":[],"shared":[],"history":[]}
+    var hello = "{\"name\":\""	+ room_nick + "\",\"obj_type\":\"person\",\"id\":\"" + room_nick + "\",\"suggestions\":[],\"shared\":[],\"history\":[]}";
+     var msg = { to: room_jid, type: 'groupchat' }; // could we just send presence to the new buddy instead of to the whole group?
+     cl.send(new xmpp.Element('message', msg ).c('body').t( hello ));
+     console.log("presence re-sent to group as "+inMsg.id+" just joined.");
+  }
+
+  if (message.indexOf('video') ) { 
+    var msg = { to: room_jid, type: 'groupchat' };
+    cl.send(new xmpp.Element('message', msg ).c('body').t( message ));
+
+  }
+}
+);
