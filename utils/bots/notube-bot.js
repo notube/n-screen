@@ -134,7 +134,9 @@ cl.on('stanza', function(stanza) {
   }
 
   if (message.indexOf('video') ) { 
-    var msg = { to: room_jid, type: 'groupchat' };
+    console.log("INFO: sending this directly to "+stanza.attrs.from+" instead of "+room_jid);
+    //    var msg = { to: room_jid, type: 'groupchat' }; // this sends to the group
+    var msg = { to: stanza.attrs.from , type: 'chat' }; // this sends back to the sender only
     cl.send(new xmpp.Element('message', msg ).c('body').t( message ));
 
   }
