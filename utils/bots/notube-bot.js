@@ -42,8 +42,8 @@ var run = libc.system;
 //var jid = "bob.notube@gmail.com"
 var jid = "bob@jabber.notu.be"					// An XMPP JID that can talk in the MUC room
 var password = process.env.NOTUBEPASS // or however...		// Password for the XMPP account we're using
-var room_jid = "default_muc11@conference.jabber.notu.be"	// XMPP MUC room we're connecting to
-var room_nick = "tellyclub" 					// our nickname in NScreen room 
+var room_jid = "3242@conference.jabber.notu.be"	// XMPP MUC room we're connecting to
+var room_nick = "tellyclub2000" 					// our nickname in NScreen room 
 
 var hello = '{"name":"'+ room_nick +'","obj_type":"person","id":"'+ room_nick +'","suggestions":[],"shared":[],"history":[]}';
 
@@ -108,14 +108,22 @@ cl.on('stanza', function(stanza) {
     return;
   }
   var message = body.getText();
-  inMsg = JSON.parse(message);
+  //  inMsg = JSON.parse(message);
+  var inMsg = null;
+  try{
+    inMsg = JSON.parse(message);
+  }catch(e){
+    console.log("json did not parse "+e);
+    console.log("message was "+message);
+  }
 
   // e.g.  {"id":"b017z1kn","pid":"b017z1kn","video":"undefined","image":"http://www.bbc.co.uk/iplayer/images/episode/b017z1kn_303_170.jpg","title":"Top Gear USA: Episode 9","description":"The guys set out to answer the question of which is America's toughest truck in Alaska.","explanation":"Recommended because you watched Top Gear USA which also has Tanner Foust in it"}
   // or {"name":"fakeLibbyMiller","obj_type":"person","id":"fakeLibbyMiller","suggestions":[],"shared":[],"history":[]}
   console.log("INFO: Got incoming msg from "+stanza.attrs.from);
   console.log("FULL: "+message);
-  console.log("msg type: "+inMsg.obj_type);    // could be a person
-  if (inMsg.obj_type == 'person') {
+  if (inMsg && inMsg.obj_type == 'person') {
+    console.log("msg type: "+inMsg.obj_type);    // could be a person
+  //if (inMsg.obj_type == 'person') {
     // We have a new buddy in the group, e.g. {"name":"danko2","obj_type":"person","id":"danko2","suggestions":[],"shared":[],"history":[]}
     var hello = "{\"name\":\""	+ room_nick + "\",\"obj_type\":\"person\",\"id\":\"" + room_nick + "\",\"suggestions\":[],\"shared\":[],\"history\":[]}";
      var msg = { to: room_jid, type: 'groupchat' }; // could we just send presence to the new buddy instead of to the whole group?
