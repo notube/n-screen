@@ -25,18 +25,20 @@
 // http://stackoverflow.com/questions/4443597/node-js-execute-system-command-synchronously
 // Requires: https://github.com/astro/node-stringprep
 
-var request = require('request'); // github.com/mikeal/request
+//var request = require('request'); // github.com/mikeal/request
 var sys = require('sys');
 var util = require('util');
 var xmpp = require('node-xmpp');
 
+
 // shell hacks
+/*
 var FFI = require("node-ffi");
 var libc = new FFI.Library(null, {
   "system": ["int32", ["string"]]
 });
 var run = libc.system;
-
+*/
 
 // Config
 //var jid = "bob.notube@gmail.com"
