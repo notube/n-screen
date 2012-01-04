@@ -11,22 +11,23 @@
 // service. It shows up there alongside human participants, and can listen to group and individual messages.
 // If you drag an item to it, it can study that item and send back a response, individually or to group.
 //
-// Initial behaviour is a simple echo; items sent will be returned to the entire group.
-// Other ideas: 
-//  * more-like-this (using Mahout's similarity measures).
+// This demo will assume the item sent to use has a BBC identifier ("pid"), it then consults an HTTP JSON 
+// service to find similar items, and then sends a few of those back to the original sender.
+//
+// Bot ideas: 
+//  * more-like-this (using Mahout's similarity measures). [this one]
+//  * echo bot (our first demo)
 //  * a bookwork persona; send back links to books 
 //  * DVD Extras: send back other info, eg. youtube video interview with cast or director or writer
 //  * Invent your own, customise and run your own bot.
 // 
-// Questions: can we have custom icons? what variety of item types are understood in NScreen UI? Channels vs shows?
-
-// based on https://raw.github.com/gist/940969/413b5601292df26e06f325cbd6e3944a728fb590/hipchat_bot.js
+// Notes and questions: can we have custom icons? what variety of item types are understood in NScreen UI? Channels vs shows?
 // also for exec'ing, npm install node-ffi might be useful (to query SQL etc on commandline?)
 // http://stackoverflow.com/questions/4443597/node-js-execute-system-command-synchronously
-// Requires: https://github.com/astro/node-stringprep
+// Optional but recommended: https://github.com/astro/node-stringprep
 
 // INSTALL SOME MODULES: 
-// e.g. npm install util node-xmpp request jsdom http url path events
+// e.g. npm install util node-xmpp request jsdom http url path events node-stringprep
 
 var sys = require('sys');
 var util = require('util');
