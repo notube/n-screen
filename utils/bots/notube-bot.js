@@ -40,6 +40,10 @@ var http = require("http"),
     fs = require("fs"),  
     events = require("events"); 
 
+// Debugging, strongly recommended! sudo npm install -g node-inspector v8-profiler
+// Then run using:  node --debug ./notube-bot.js 
+// In another terminal, run 'node-inspector' and use browser-based debugger: http://0.0.0.0:8080/debug?port=5858
+
 // shell hacks, not used yet.
 /*
 var FFI = require("node-ffi");
