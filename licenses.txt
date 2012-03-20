@@ -10,6 +10,9 @@ jQuery:
 jQuery.ui.touch 
 -- MIT: http://code.google.com/p/jquery-ui-for-ipad-and-iphone/
 
+Cloud Carousel
+-- MIT: http://www.professorcloud.com/mainsite/mit-license.htm?name=Cloud+Carousel
+
 Compatibility of MIT and Apache 2: http://apache.org/legal/resolved.html#category-a
 
 Media:

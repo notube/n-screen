@@ -1,0 +1,280 @@
+<html>
+<head>
+<!-- You can load the jQuery library from the Google Content Network. Probably better than from your own server. -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+ 
+<!-- Load the CloudCarousel JavaScript file -->
+<script type="text/JavaScript" src="../lib/cloud-carousel.1.0.5.min.js"></script>
+ 
+<script>
+$(document).ready(function(){
+	// This initialises carousels on the container elements specified, in this case, carousel1.
+	$("#carousel1").CloudCarousel(		
+		{			
+			xPos: 300,
+			yPos: 100,
+			buttonLeft: $("#left-but"),
+			buttonRight: $("#right-but"),
+			altBox: $("#alt-text"),
+			titleBox: $("#title-text"),
+			fps: 5,	
+			reflHeight: 64,
+			minScale: 0.25,
+			reflGap: 10,
+			reflOpacity: 0.2,
+			xRadius: 450,
+			yRadius: 250,
+			speed: 0.3,
+			bringToFront: true
+
+		}
+	);
+});
+ 
+</script>
+
+<!-- http://www.freebase.com/docs/suggest -->
+<link type="text/css" rel="stylesheet" href="http://freebaselibs.com/static/suggest/1.3/suggest.min.css" />
+<script type="text/javascript" src="http://freebaselibs.com/static/suggest/1.3/suggest.min.js"></script>
+ 
+</head>
+    <body>
+    	<!-- This is the container for the carousel. -->
+        <div id = "carousel1" style="width:648px; height:568px;background:#FFF;overflow:scroll;">            
+            <!-- All images with class of "cloudcarousel" will be turned into carousel items -->
+            <!-- You can place links around these images -->
+
+<!--            <img class = "cloudcarousel" src="/images/carousel/flags/flag1.png" alt="Flag 1 Description" title="Flag 1 Title" />
+-->
+
+
+<script type="text/javascript">
+
+// Topic
+$("#example1")
+  .suggest()
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+// Place
+$("#example2")
+  .suggest({ "type": ["/location/country", "/location/us_state", "/location/location"],  "type_strict": "any" })
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+// Actor
+$("#example3")
+  .suggest({ "type": ["/film/actor"],  "type_strict": "any" })
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+// Director
+$("#example4")
+  .suggest({ "type": ["/film/director"],  "type_strict": "any" ,   "suggest_new": "Click on me if you don't see anything in the list"})
+  .bind("fb-select", function(e, data) {
+    alert(data.name + ", " + data.id + $("#carousel1"));
+  });
+
+
+</script>
+	
+<img class="cloudcarousel" src="../images/'Neath_Brooklyn_Bridge.jpg" alt="'Neath Brooklyn Bridge" title="'Neath Brooklyn Bridge" />
+<img class="cloudcarousel" src="../images/2010_11_23_11.jpg" alt="2010 11 23 11" title="2010 11 23 11" />
+<img class="cloudcarousel" src="../images/A_Bucket_of_Blood.jpg" alt="A Bucket of Blood" title="A Bucket of Blood" />
+<img class="cloudcarousel" src="../images/A_Farewell_to_Arms_(1932_film).jpg" alt="A Farewell to Arms (1932 film)" title="A Farewell to Arms (1932 film)" />
+<img class="cloudcarousel" src="../images/A_Shriek_in_the_Night.jpg" alt="A Shriek in the Night" title="A Shriek in the Night" />
+<img class="cloudcarousel" src="../images/A_Star_Is_Born_(1937_film).jpg" alt="A Star Is Born (1937 film)" title="A Star Is Born (1937 film)" />
+<img class="cloudcarousel" src="../images/A_Tale_of_Two_Kitties.jpg" alt="A Tale of Two Kitties" title="A Tale of Two Kitties" />
+<img class="cloudcarousel" src="../images/Abraham_Lincoln_(film).jpg" alt="Abraham Lincoln (film)" title="Abraham Lincoln (film)" />
+<img class="cloudcarousel" src="../images/Ace_Drummond_(serial).jpg" alt="Ace Drummond (serial)" title="Ace Drummond (serial)" />
+<img class="cloudcarousel" src="../images/Africa_Screams.jpg" alt="Africa Screams" title="Africa Screams" />
+<img class="cloudcarousel" src="../images/And_Then_There_Were_None_(film).jpg" alt="And Then There Were None (film)" title="And Then There Were None (film)" />
+<img class="cloudcarousel" src="../images/Angel_and_the_Badman.jpg" alt="Angel and the Badman" title="Angel and the Badman" />
+<img class="cloudcarousel" src="../images/Angel_on_My_Shoulder_(film).jpg" alt="Angel on My Shoulder (film)" title="Angel on My Shoulder (film)" />
+<img class="cloudcarousel" src="../images/Assassin_of_Youth.jpg" alt="Assassin of Youth" title="Assassin of Youth" />
+<img class="cloudcarousel" src="../images/At_War_with_the_Army.jpg" alt="At War with the Army" title="At War with the Army" />
+<img class="cloudcarousel" src="../images/Atom_Age_Vampire.jpg" alt="Atom Age Vampire" title="Atom Age Vampire" />
+<img class="cloudcarousel" src="../images/Attack_of_the_Giant_Leeches.jpg" alt="Attack of the Giant Leeches" title="Attack of the Giant Leeches" />
+<img class="cloudcarousel" src="../images/Beyond_Tomorrow_(film).jpg" alt="Beyond Tomorrow (film)" title="Beyond Tomorrow (film)" />
+<img class="cloudcarousel" src="../images/Black_Dragons.jpg" alt="Black Dragons" title="Black Dragons" />
+<img class="cloudcarousel" src="../images/Blackmail_(1929_film).jpg" alt="Blackmail (1929 film)" title="Blackmail (1929 film)" />
+<img class="cloudcarousel" src="../images/Bloody_Pit_of_Horror.jpg" alt="Bloody Pit of Horror" title="Bloody Pit of Horror" />
+<img class="cloudcarousel" src="../images/Bluebeard_(1944_film).jpg" alt="Bluebeard (1944 film)" title="Bluebeard (1944 film)" />
+<img class="cloudcarousel" src="../images/Bowery_at_Midnight.jpg" alt="Bowery at Midnight" title="Bowery at Midnight" />
+<img class="cloudcarousel" src="../images/Boy_Meets_Dog.jpg" alt="Boy Meets Dog" title="Boy Meets Dog" />
+<img class="cloudcarousel" src="../images/Bride_of_the_Gorilla.jpg" alt="Bride of the Gorilla" title="Bride of the Gorilla" />
+<img class="cloudcarousel" src="../images/Broken_Blossoms.jpg" alt="Broken Blossoms" title="Broken Blossoms" />
+<img class="cloudcarousel" src="../images/Bulldog_Drummond_(1929_film).jpg" alt="Bulldog Drummond (1929 film)" title="Bulldog Drummond (1929 film)" />
+<img class="cloudcarousel" src="../images/Captain_Kidd_(film).jpg" alt="Captain Kidd (film)" title="Captain Kidd (film)" />
+<img class="cloudcarousel" src="../images/Carnival_of_Souls.jpg" alt="Carnival of Souls" title="Carnival of Souls" />
+<img class="cloudcarousel" src="../images/Cause_for_Alarm!.jpg" alt="Cause for Alarm!" title="Cause for Alarm!" />
+<img class="cloudcarousel" src="../images/Check_and_Double_Check.jpg" alt="Check and Double Check" title="Check and Double Check" />
+<img class="cloudcarousel" src="../images/Child_Bride.jpg" alt="Child Bride" title="Child Bride" />
+<img class="cloudcarousel" src="../images/Crash_of_the_Moons.jpg" alt="Crash of the Moons" title="Crash of the Moons" />
+<img class="cloudcarousel" src="../images/Creature_from_the_Haunted_Sea.jpg" alt="Creature from the Haunted Sea" title="Creature from the Haunted Sea" />
+<img class="cloudcarousel" src="../images/Cyrano_de_Bergerac_(1950_film).jpg" alt="Cyrano de Bergerac (1950 film)" title="Cyrano de Bergerac (1950 film)" />
+<img class="cloudcarousel" src="../images/D.O.A._(1950_film).jpg" alt="D.O.A. (1950 film)" title="D.O.A. (1950 film)" />
+<img class="cloudcarousel" src="../images/Dead_Men_Walk.jpg" alt="Dead Men Walk" title="Dead Men Walk" />
+<img class="cloudcarousel" src="../images/Death_Rides_a_Horse.jpg" alt="Death Rides a Horse" title="Death Rides a Horse" />
+<img class="cloudcarousel" src="../images/Dementia_13.jpg" alt="Dementia 13" title="Dementia 13" />
+<img class="cloudcarousel" src="../images/Detour_(1945_film).jpg" alt="Detour (1945 film)" title="Detour (1945 film)" />
+<img class="cloudcarousel" src="../images/Dick_Tracy_(1945_film).jpg" alt="Dick Tracy (1945 film)" title="Dick Tracy (1945 film)" />
+<img class="cloudcarousel" src="../images/Dick_Tracy_(Serial).jpg" alt="Dick Tracy (Serial)" title="Dick Tracy (Serial)" />
+<img class="cloudcarousel" src="../images/Dressed_to_Kill_(1946_film).jpg" alt="Dressed to Kill (1946 film)" title="Dressed to Kill (1946 film)" />
+<img class="cloudcarousel" src="../images/Father's_Little_Dividend.jpg" alt="Father's Little Dividend" title="Father's Little Dividend" />
+<img class="cloudcarousel" src="../images/Fear_in_the_Night.jpg" alt="Fear in the Night" title="Fear in the Night" />
+<img class="cloudcarousel" src="../images/Five_Minutes_to_Live.jpg" alt="Five Minutes to Live" title="Five Minutes to Live" />
+<img class="cloudcarousel" src="../images/Flash_Gordon_Conquers_the_Universe.jpg" alt="Flash Gordon Conquers the Universe" title="Flash Gordon Conquers the Universe" />
+<img class="cloudcarousel" src="../images/Glamour_Gal.jpg" alt="Glamour Gal" title="Glamour Gal" />
+<img class="cloudcarousel" src="../images/Greed_(film).jpg" alt="Greed (film)" title="Greed (film)" />
+<img class="cloudcarousel" src="../images/Happy_Go_Lovely.jpg" alt="Happy Go Lovely" title="Happy Go Lovely" />
+<img class="cloudcarousel" src="../images/He_Walked_by_Night.jpg" alt="He Walked by Night" title="He Walked by Night" />
+<img class="cloudcarousel" src="../images/Hercules_Unchained.jpg" alt="Hercules Unchained" title="Hercules Unchained" />
+<img class="cloudcarousel" src="../images/Hercules_vs._the_Moon_Men.jpg" alt="Hercules vs. the Moon Men" title="Hercules vs. the Moon Men" />
+<img class="cloudcarousel" src="../images/His_Girl_Friday.jpg" alt="His Girl Friday" title="His Girl Friday" />
+<img class="cloudcarousel" src="../images/Holy_Ghost_People.jpg" alt="Holy Ghost People" title="Holy Ghost People" />
+<img class="cloudcarousel" src="../images/Horror_Express.jpg" alt="Horror Express" title="Horror Express" />
+<img class="cloudcarousel" src="../images/Horrors_of_Spider_Island.jpg" alt="Horrors of Spider Island" title="Horrors of Spider Island" />
+<img class="cloudcarousel" src="../images/House_on_Haunted_Hill.jpg" alt="House on Haunted Hill" title="House on Haunted Hill" />
+<img class="cloudcarousel" src="../images/Impact_(film).jpg" alt="Impact (film)" title="Impact (film)" />
+<img class="cloudcarousel" src="../images/Indestructible_Man.jpg" alt="Indestructible Man" title="Indestructible Man" />
+<img class="cloudcarousel" src="../images/Intolerance_(film).jpg" alt="Intolerance (film)" title="Intolerance (film)" />
+<img class="cloudcarousel" src="../images/Invisible_Ghost.jpg" alt="Invisible Ghost" title="Invisible Ghost" />
+<img class="cloudcarousel" src="../images/Jack_and_the_Beanstalk_(1952_film).jpg" alt="Jack and the Beanstalk (1952 film)" title="Jack and the Beanstalk (1952 film)" />
+<img class="cloudcarousel" src="../images/Kansas_City_Confidential.jpg" alt="Kansas City Confidential" title="Kansas City Confidential" />
+<img class="cloudcarousel" src="../images/King_of_the_Zombies.jpg" alt="King of the Zombies" title="King of the Zombies" />
+<img class="cloudcarousel" src="../images/Lady_Frankenstein.jpg" alt="Lady Frankenstein" title="Lady Frankenstein" />
+<img class="cloudcarousel" src="../images/Last_Woman_on_Earth.jpg" alt="Last Woman on Earth" title="Last Woman on Earth" />
+<img class="cloudcarousel" src="../images/M_(1931_film).jpg" alt="M (1931 film)" title="M (1931 film)" />
+<img class="cloudcarousel" src="../images/Malice_in_the_Palace.jpg" alt="Malice in the Palace" title="Malice in the Palace" />
+<img class="cloudcarousel" src="../images/Man_with_a_Movie_Camera.jpg" alt="Man with a Movie Camera" title="Man with a Movie Camera" />
+<img class="cloudcarousel" src="../images/Maniac_(1934_film).jpg" alt="Maniac (1934 film)" title="Maniac (1934 film)" />
+<img class="cloudcarousel" src="../images/Marihuana_(film).jpg" alt="Marihuana (film)" title="Marihuana (film)" />
+<img class="cloudcarousel" src="../images/McLintock!.jpg" alt="McLintock!" title="McLintock!" />
+<img class="cloudcarousel" src="../images/Meet_John_Doe.jpg" alt="Meet John Doe" title="Meet John Doe" />
+<img class="cloudcarousel" src="../images/Midnight_Manhunt.jpg" alt="Midnight Manhunt" title="Midnight Manhunt" />
+<img class="cloudcarousel" src="../images/Minnie_Mouse#Minnie.27s_Yoo_Hoo.jpg" alt="Minnie Mouse#Minnie.27s Yoo Hoo" title="Minnie Mouse#Minnie.27s Yoo Hoo" />
+<img class="cloudcarousel" src="../images/Murder!.jpg" alt="Murder!" title="Murder!" />
+<img class="cloudcarousel" src="../images/My_Favorite_Brunette.jpg" alt="My Favorite Brunette" title="My Favorite Brunette" />
+<img class="cloudcarousel" src="../images/Nightmare_Castle.jpg" alt="Nightmare Castle" title="Nightmare Castle" />
+<img class="cloudcarousel" src="../images/Nosferatu.jpg" alt="Nosferatu" title="Nosferatu" />
+<img class="cloudcarousel" src="../images/Nothing_Sacred_(film).jpg" alt="Nothing Sacred (film)" title="Nothing Sacred (film)" />
+<img class="cloudcarousel" src="../images/One_Body_Too_Many.jpg" alt="One Body Too Many" title="One Body Too Many" />
+<img class="cloudcarousel" src="../images/Orphans_of_the_Storm.jpg" alt="Orphans of the Storm" title="Orphans of the Storm" />
+<img class="cloudcarousel" src="../images/Our_Gang_Follies_of_1938.jpg" alt="Our Gang Follies of 1938" title="Our Gang Follies of 1938" />
+<img class="cloudcarousel" src="../images/Parlor,_Bedroom_and_Bath.jpg" alt="Parlor, Bedroom and Bath" title="Parlor, Bedroom and Bath" />
+<img class="cloudcarousel" src="../images/Perversion_for_Profit.jpg" alt="Perversion for Profit" title="Perversion for Profit" />
+<img class="cloudcarousel" src="../images/Plan_9_from_Outer_Space.jpg" alt="Plan 9 from Outer Space" title="Plan 9 from Outer Space" />
+<img class="cloudcarousel" src="../images/Poor_Cinderella.jpg" alt="Poor Cinderella" title="Poor Cinderella" />
+<img class="cloudcarousel" src="../images/Queen_of_the_Amazons.jpg" alt="Queen of the Amazons" title="Queen of the Amazons" />
+<img class="cloudcarousel" src="../images/Radar_Men_from_the_Moon.jpg" alt="Radar Men from the Moon" title="Radar Men from the Moon" />
+<img class="cloudcarousel" src="../images/Reefer_Madness.jpg" alt="Reefer Madness" title="Reefer Madness" />
+<img class="cloudcarousel" src="../images/Revolt_of_the_Zombies.jpg" alt="Revolt of the Zombies" title="Revolt of the Zombies" />
+<img class="cloudcarousel" src="../images/Road_to_Bali.jpg" alt="Road to Bali" title="Road to Bali" />
+<img class="cloudcarousel" src="../images/Rocketship_X-M.jpg" alt="Rocketship X-M" title="Rocketship X-M" />
+<img class="cloudcarousel" src="../images/Royal_Wedding.jpg" alt="Royal Wedding" title="Royal Wedding" />
+<img class="cloudcarousel" src="../images/Salt_of_the_Earth.jpg" alt="Salt of the Earth" title="Salt of the Earth" />
+<img class="cloudcarousel" src="../images/Santa_Fe_Trail_(film).jpg" alt="Santa Fe Trail (film)" title="Santa Fe Trail (film)" />
+<img class="cloudcarousel" src="../images/Scared_to_Death.jpg" alt="Scared to Death" title="Scared to Death" />
+<img class="cloudcarousel" src="../images/Scarlet_Street.jpg" alt="Scarlet Street" title="Scarlet Street" />
+<img class="cloudcarousel" src="../images/Scrooge_(1935_film).jpg" alt="Scrooge (1935 film)" title="Scrooge (1935 film)" />
+<img class="cloudcarousel" src="../images/Second_Chorus.jpg" alt="Second Chorus" title="Second Chorus" />
+<img class="cloudcarousel" src="../images/Shock_(1946_film).jpg" alt="Shock (1946 film)" title="Shock (1946 film)" />
+<img class="cloudcarousel" src="../images/Sing_a_Song_of_Six_Pants.jpg" alt="Sing a Song of Six Pants" title="Sing a Song of Six Pants" />
+<img class="cloudcarousel" src="../images/Smash-Up,_the_Story_of_a_Woman.jpg" alt="Smash-Up, the Story of a Woman" title="Smash-Up, the Story of a Woman" />
+<img class="cloudcarousel" src="../images/Something_to_Sing_About_(1937_film).jpg" alt="Something to Sing About (1937 film)" title="Something to Sing About (1937 film)" />
+<img class="cloudcarousel" src="../images/Spring_in_a_Small_Town.jpg" alt="Spring in a Small Town" title="Spring in a Small Town" />
+<img class="cloudcarousel" src="../images/Suddenly_(film).jpg" alt="Suddenly (film)" title="Suddenly (film)" />
+<img class="cloudcarousel" src="../images/Tarzan_the_Tiger.jpg" alt="Tarzan the Tiger" title="Tarzan the Tiger" />
+<img class="cloudcarousel" src="../images/Teenage_Zombies.jpg" alt="Teenage Zombies" title="Teenage Zombies" />
+<img class="cloudcarousel" src="../images/Teenagers_from_Outer_Space.jpg" alt="Teenagers from Outer Space" title="Teenagers from Outer Space" />
+<img class="cloudcarousel" src="../images/Terror_by_Night.jpg" alt="Terror by Night" title="Terror by Night" />
+<img class="cloudcarousel" src="../images/The_Adventures_of_Smilin'_Jack_(serial).jpg" alt="The Adventures of Smilin' Jack (serial)" title="The Adventures of Smilin' Jack (serial)" />
+<img class="cloudcarousel" src="../images/The_Amazing_Transparent_Man.jpg" alt="The Amazing Transparent Man" title="The Amazing Transparent Man" />
+<img class="cloudcarousel" src="../images/The_Ape.jpg" alt="The Ape" title="The Ape" />
+<img class="cloudcarousel" src="../images/The_Ape_Man.jpg" alt="The Ape Man" title="The Ape Man" />
+<img class="cloudcarousel" src="../images/The_Bat_(1959_film).jpg" alt="The Bat (1959 film)" title="The Bat (1959 film)" />
+<img class="cloudcarousel" src="../images/The_Battleship_Potemkin.jpg" alt="The Battleship Potemkin" title="The Battleship Potemkin" />
+<img class="cloudcarousel" src="../images/The_Bigamist_(1953_film).jpg" alt="The Bigamist (1953 film)" title="The Bigamist (1953 film)" />
+<img class="cloudcarousel" src="../images/The_Birth_of_a_Nation.jpg" alt="The Birth of a Nation" title="The Birth of a Nation" />
+<img class="cloudcarousel" src="../images/The_Blood_of_Jesus.jpg" alt="The Blood of Jesus" title="The Blood of Jesus" />
+<img class="cloudcarousel" src="../images/The_Boy_in_the_Plastic_Bubble.jpg" alt="The Boy in the Plastic Bubble" title="The Boy in the Plastic Bubble" />
+<img class="cloudcarousel" src="../images/The_Brain_That_Wouldn't_Die.jpg" alt="The Brain That Wouldn't Die" title="The Brain That Wouldn't Die" />
+<img class="cloudcarousel" src="../images/The_Brother_from_Another_Planet.jpg" alt="The Brother from Another Planet" title="The Brother from Another Planet" />
+<img class="cloudcarousel" src="../images/The_Cabinet_of_Dr._Caligari.jpg" alt="The Cabinet of Dr. Caligari" title="The Cabinet of Dr. Caligari" />
+<img class="cloudcarousel" src="../images/The_City_of_the_Dead_(film).jpg" alt="The City of the Dead (film)" title="The City of the Dead (film)" />
+<img class="cloudcarousel" src="../images/The_Corpse_Vanishes.jpg" alt="The Corpse Vanishes" title="The Corpse Vanishes" />
+<img class="cloudcarousel" src="../images/The_Driller_Killer.jpg" alt="The Driller Killer" title="The Driller Killer" />
+<img class="cloudcarousel" src="../images/The_Eternal_Jew.jpg" alt="The Eternal Jew" title="The Eternal Jew" />
+<img class="cloudcarousel" src="../images/The_Fatal_Hour.jpg" alt="The Fatal Hour" title="The Fatal Hour" />
+<img class="cloudcarousel" src="../images/The_Flying_Deuces.jpg" alt="The Flying Deuces" title="The Flying Deuces" />
+<img class="cloudcarousel" src="../images/The_Front_Page_(1931_film).jpg" alt="The Front Page (1931 film)" title="The Front Page (1931 film)" />
+<img class="cloudcarousel" src="../images/The_Giant_Gila_Monster.jpg" alt="The Giant Gila Monster" title="The Giant Gila Monster" />
+<img class="cloudcarousel" src="../images/The_Gorilla_(1939_film).jpg" alt="The Gorilla (1939 film)" title="The Gorilla (1939 film)" />
+<img class="cloudcarousel" src="../images/The_Great_Rupert.jpg" alt="The Great Rupert" title="The Great Rupert" />
+<img class="cloudcarousel" src="../images/The_Hitch-Hiker.jpg" alt="The Hitch-Hiker" title="The Hitch-Hiker" />
+<img class="cloudcarousel" src="../images/The_Hunchback_of_Notre_Dame_(1923_film).jpg" alt="The Hunchback of Notre Dame (1923 film)" title="The Hunchback of Notre Dame (1923 film)" />
+<img class="cloudcarousel" src="../images/The_Hurricane_Express.jpg" alt="The Hurricane Express" title="The Hurricane Express" />
+<img class="cloudcarousel" src="../images/The_Incredible_Petrified_World.jpg" alt="The Incredible Petrified World" title="The Incredible Petrified World" />
+<img class="cloudcarousel" src="../images/The_Inspector_General_(film).jpg" alt="The Inspector General (film)" title="The Inspector General (film)" />
+<img class="cloudcarousel" src="../images/The_Jackie_Robinson_Story.jpg" alt="The Jackie Robinson Story" title="The Jackie Robinson Story" />
+<img class="cloudcarousel" src="../images/The_Killer_Shrews.jpg" alt="The Killer Shrews" title="The Killer Shrews" />
+<img class="cloudcarousel" src="../images/The_Lady_Vanishes_(1938_film).jpg" alt="The Lady Vanishes (1938 film)" title="The Lady Vanishes (1938 film)" />
+<img class="cloudcarousel" src="../images/The_Last_Man_on_Earth_(1964_film).jpg" alt="The Last Man on Earth (1964 film)" title="The Last Man on Earth (1964 film)" />
+<img class="cloudcarousel" src="../images/The_Last_Time_I_Saw_Paris.jpg" alt="The Last Time I Saw Paris" title="The Last Time I Saw Paris" />
+<img class="cloudcarousel" src="../images/The_Last_of_the_Mohicans_(1920_American_film).jpg" alt="The Last of the Mohicans (1920 American film)" title="The Last of the Mohicans (1920 American film)" />
+<img class="cloudcarousel" src="../images/The_Little_Shop_of_Horrors.jpg" alt="The Little Shop of Horrors" title="The Little Shop of Horrors" />
+<img class="cloudcarousel" src="../images/The_Lost_Jungle.jpg" alt="The Lost Jungle" title="The Lost Jungle" />
+<img class="cloudcarousel" src="../images/The_Lost_World_(1925_film).jpg" alt="The Lost World (1925 film)" title="The Lost World (1925 film)" />
+<img class="cloudcarousel" src="../images/The_Mad_Monster.jpg" alt="The Mad Monster" title="The Mad Monster" />
+<img class="cloudcarousel" src="../images/The_Manster.jpg" alt="The Manster" title="The Manster" />
+<img class="cloudcarousel" src="../images/The_Monster_Maker.jpg" alt="The Monster Maker" title="The Monster Maker" />
+<img class="cloudcarousel" src="../images/The_Outlaw.jpg" alt="The Outlaw" title="The Outlaw" />
+<img class="cloudcarousel" src="../images/The_Phantom_Planet.jpg" alt="The Phantom Planet" title="The Phantom Planet" />
+<img class="cloudcarousel" src="../images/The_Phantom_from_10,000_Leagues.jpg" alt="The Phantom from 10,000 Leagues" title="The Phantom from 10,000 Leagues" />
+<img class="cloudcarousel" src="../images/The_Phantom_of_the_Opera_(1925_film).jpg" alt="The Phantom of the Opera (1925 film)" title="The Phantom of the Opera (1925 film)" />
+<img class="cloudcarousel" src="../images/The_Princess_and_the_Pauper.jpg" alt="The Princess and the Pauper" title="The Princess and the Pauper" />
+<img class="cloudcarousel" src="../images/The_Screaming_Skull.jpg" alt="The Screaming Skull" title="The Screaming Skull" />
+<img class="cloudcarousel" src="../images/The_Second_Woman.jpg" alt="The Second Woman" title="The Second Woman" />
+<img class="cloudcarousel" src="../images/The_Strange_Love_of_Martha_Ivers.jpg" alt="The Strange Love of Martha Ivers" title="The Strange Love of Martha Ivers" />
+<img class="cloudcarousel" src="../images/The_Stranger_(1946_film).jpg" alt="The Stranger (1946 film)" title="The Stranger (1946 film)" />
+<img class="cloudcarousel" src="../images/The_Street_Fighter's_Last_Revenge.jpg" alt="The Street Fighter's Last Revenge" title="The Street Fighter's Last Revenge" />
+<img class="cloudcarousel" src="../images/The_Terror_(1963_film).jpg" alt="The Terror (1963 film)" title="The Terror (1963 film)" />
+<img class="cloudcarousel" src="../images/The_Vampire_Bat.jpg" alt="The Vampire Bat" title="The Vampire Bat" />
+<img class="cloudcarousel" src="../images/The_Wabbit_Who_Came_to_Supper.jpg" alt="The Wabbit Who Came to Supper" title="The Wabbit Who Came to Supper" />
+<img class="cloudcarousel" src="../images/They_Made_Me_a_Criminal.jpg" alt="They Made Me a Criminal" title="They Made Me a Criminal" />
+<img class="cloudcarousel" src="../images/This_Is_the_Army.jpg" alt="This Is the Army" title="This Is the Army" />
+<img class="cloudcarousel" src="../images/Three_Came_Home.jpg" alt="Three Came Home" title="Three Came Home" />
+<img class="cloudcarousel" src="../images/Tormented_(film).jpg" alt="Tormented (film)" title="Tormented (film)" />
+<img class="cloudcarousel" src="../images/Undersea_Kingdom.jpg" alt="Undersea Kingdom" title="Undersea Kingdom" />
+<img class="cloudcarousel" src="../images/Vengeance_Valley.jpg" alt="Vengeance Valley" title="Vengeance Valley" />
+<img class="cloudcarousel" src="../images/Voyage_to_the_Planet_of_Prehistoric_Women.jpg" alt="Voyage to the Planet of Prehistoric Women" title="Voyage to the Planet of Prehistoric Women" />
+<img class="cloudcarousel" src="../images/Voyage_to_the_Prehistoric_Planet.jpg" alt="Voyage to the Prehistoric Planet" title="Voyage to the Prehistoric Planet" />
+<img class="cloudcarousel" src="../images/Zorro's_Black_Whip.jpg" alt="Zorro's Black Whip" title="Zorro's Black Whip" />
+<img class="cloudcarousel" src="../images/Zorro's_Fighting_Legion.jpg" alt="Zorro's Fighting Legion" title="Zorro's Fighting Legion" />
+
+        </div>
+
+        <p style="float: centre" id="title-text"></p>
+	<p style="float: right">Director:<input id="example4" type="text"/> </p>
+        <div style="float: clear"/>
+	<p style="float: right">Actor:<input id="example3" type="text"/> </p>
+        <div style="float: clear"/>
+	<p style="float: right">Place:<input id="example2" type="text"/> </p>
+        <div style="float: clear"/>
+	<p style="float: right">Topic:<input id="example1" type="text"/> </p>
+        <div style="float: clear"/>
+        
+        <!-- Define left and right buttons. -->
+        <input id="left-but"  type="button" value="Left" />
+        <input id="right-but" type="button" value="Right" />
+        
+        <!-- Define elements to accept the alt and title text from the images. -->
+        <p id="alt-text"></p>
+
+
+    </body>
+</html>

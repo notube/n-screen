@@ -74,7 +74,7 @@ function init(){
   show_message("Welcome to Simple TV<br /><small>Group is "+my_group+"</small>");
 
   var pr = tmp_name();
-  buttons = new ButtonsLink({"server":"jabber.notu.be"});
+  buttons = new ButtonsLink({"server":"jabber.example.com"});
   me = new TV(pr,pr);
   buttons.connect(me,my_group,blink_callback);
 
