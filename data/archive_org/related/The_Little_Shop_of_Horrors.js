@@ -1,0 +1,664 @@
+{
+  "title": "The Little Shop of Horrors",
+  "suggestions": [
+    {
+      "title": "Creature from the Haunted Sea",
+      "explanation": [
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:1960s_comedy_films",
+          2
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/1960sComedyFilms",
+          2
+        ],
+        [
+          "http://dbpedia.org/ontology/writer|http://dbpedia.org/resource/Charles_B._Griffith",
+          3
+        ],
+        [
+          "http://dbpedia.org/ontology/musicComposer|http://dbpedia.org/resource/Fred_Katz",
+          3
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Charles_B",
+          3
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/FilmsDirectedByRogerCorman",
+          5
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Films_directed_by_Roger_Corman",
+          5
+        ],
+        [
+          "http://dbpedia.org/ontology/director|http://dbpedia.org/resource/Roger_Corman",
+          5
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Roger_Corman",
+          6
+        ],
+        [
+          "http://dbpedia.org/ontology/producer|http://dbpedia.org/resource/Roger_Corman",
+          9
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/IndependentFilms",
+          24
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Independent_films",
+          25
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:B_movies",
+          41
+        ],
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Creature_from_the_Haunted_Sea",
+      "video": "http://ia600102.us.archive.org/23/items/CreatureFromTheHauntedSea/CreatureFromTheHauntedSea_512kb.mp4",
+      "description": "Creature from the Haunted Sea is a 1961 comedy film directed by Roger Corman. Written by Charles B.",
+      "image": "images/Creature_from_the_Haunted_Sea.jpg"
+    },
+    {
+      "title": "Swamp Women",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/director|http://dbpedia.org/resource/Roger_Corman",
+          5
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/FilmsDirectedByRogerCorman",
+          5
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Films_directed_by_Roger_Corman",
+          5
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Roger_Corman",
+          6
+        ],
+        [
+          "http://dbpedia.org/ontology/producer|http://dbpedia.org/resource/Roger_Corman",
+          9
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/IndependentFilms",
+          24
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Independent_films",
+          25
+        ],
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Swamp_Women",
+      "video": "http://ia600102.us.archive.org/23/items/RC_SwampWomen/RC_SwampWomen_512kb.mp4",
+      "description": "Swamp Women was one of the first films directed by Roger Corman. The story follows undercover police officer Lee Hampton who joins three female convicts and escapes from prison. The escape is part of a larger plot to uncover a cache of diamonds hidden deep within the swamps of Louisiana. This film is sometimes also known as Cruel Swamp or Swamp Diamonds. The film is now in the public domain.",
+      "image": "images/Swamp_Women.png"
+    },
+    {
+      "title": "The Phantom from 10,000 Leagues",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/musicComposer|http://dbpedia.org/resource/Ronald_Stein",
+          5
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/IndependentFilms",
+          24
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Independent_films",
+          25
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:B_movies",
+          41
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "The_Phantom_from_10,000_Leagues",
+      "video": "http://ia600102.us.archive.org/23/items/ThePhantomFrom10.000Leagues/ThePhantomFrom10.000Leagues_512kb.mp4",
+      "description": "The Phantom from 10,000 Leagues is a 1955 science fiction film. It was directed by Dan Milner and starred Kent Taylor. The movie was released December, 1955. It was a B-movie success and has had many DVD releases.",
+      "image": "images/The_Phantom_from_10,000_Leagues.jpg"
+    },
+    {
+      "title": "Queen of the Amazons",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Queen_of_the_Amazons",
+      "video": "http://ia600102.us.archive.org/23/items/QueenoftheAmazons/QueenoftheAmazons_512kb.mp4",
+      "description": "Queen of the Amazons is a 1947 adventure film directed by Edward Finney.",
+      "image": "images/Queen_of_the_Amazons.jpg"
+    },
+    {
+      "title": "One Body Too Many",
+      "explanation": [
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/IndependentFilms",
+          24
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Independent_films",
+          25
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "One_Body_Too_Many",
+      "video": "http://ia600102.us.archive.org/23/items/one_body_too_many_ipod/one_body_too_many_ipod_512kb.mp4",
+      "description": "One Body Too Many is a 1944 cult film directed by Frank McDonald, starring Bela Lugosi and Jack Haley.",
+      "image": "images/One_Body_Too_Many.jpg"
+    },
+    {
+      "title": "The World Gone Mad",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/country|http://dbpedia.org/resource/United_States",
+          42
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "The_World_Gone_Mad",
+      "video": "http://ia600102.us.archive.org/23/items/WorldGoneMad/WorldGoneMad_512kb.mp4",
+      "description": "The World Gone Mad is a low-budget 1933 Hollywood studio drama. When a district attorney who has been investigating a utility company&#39;s directors for fraud is suddenly killed, his wise-cracking newspaperman friend (O&#39;Brien) gets curious. He and the upstanding new district attorney (Hamilton) separately pursue the case.",
+      "image": "images/The_World_Gone_Mad.png"
+    },
+    {
+      "title": "The Ape",
+      "explanation": [
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:B_movies",
+          41
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "The_Ape",
+      "video": "http://ia600102.us.archive.org/23/items/the_ape/the_ape_512kb.mp4",
+      "description": "The Ape is a 1940 American horror film made for Monogram Pictures, co-written by Curt Siodmak and starring Boris Karloff.",
+      "image": "images/The_Ape.jpg"
+    },
+    {
+      "title": "Dementia 13",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/musicComposer|http://dbpedia.org/resource/Ronald_Stein",
+          5
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Roger_Corman",
+          6
+        ],
+        [
+          "http://dbpedia.org/ontology/producer|http://dbpedia.org/resource/Roger_Corman",
+          9
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/IndependentFilms",
+          24
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Independent_films",
+          25
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:B_movies",
+          41
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Dementia_13",
+      "video": "http://ia600102.us.archive.org/23/items/Dementia_13/Dementia_13_512kb.mp4",
+      "description": "Dementia 13 is a 1963 horror thriller released by American International Pictures, starring William Campbell, Patrick Magee, and Luana Anders. The film was written and directed by Francis Ford Coppola and produced by Roger Corman. Although Coppola had been involved in at least two nudie films previously, Dementia 13 served as his first mainstream, &quot;legitimate&quot; directorial effort.",
+      "image": "images/Dementia_13.jpg"
+    },
+    {
+      "title": "King of the Zombies",
+      "explanation": [
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:B_movies",
+          41
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/Black-and-whiteFilms",
+          84
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Black-and-white_films",
+          89
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ]
+      ],
+      "id": "King_of_the_Zombies",
+      "video": "http://ia600102.us.archive.org/23/items/KingOfTheZombies/KingOfTheZombies_512kb.mp4",
+      "description": "King of the Zombies is a 1941 film produced by Monogram Pictures.",
+      "image": "images/King_of_the_Zombies.jpg"
+    },
+    {
+      "title": "Voyage to the Prehistoric Planet",
+      "explanation": [
+        [
+          "http://dbpedia.org/ontology/musicComposer|http://dbpedia.org/resource/Ronald_Stein",
+          5
+        ],
+        [
+          "http://dbpedia.org/ontology/producer|http://dbpedia.org/resource/Roger_Corman",
+          9
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/IndependentFilms",
+          24
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:Independent_films",
+          25
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:American_films",
+          59
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/AmericanFilms",
+          60
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/class/yago/English-languageFilms",
+          80
+        ],
+        [
+          "http://purl.org/dc/terms/subject|http://dbpedia.org/resource/Category:English-language_films",
+          85
+        ],
+        [
+          "http://dbpedia.org/property/wikiPageUsesTemplate|http://dbpedia.org/resource/Template:Infobox_Film",
+          92
+        ],
+        [
+          "http://dbpedia.org/property/wordnet_type|http://www.w3.org/2006/03/wn/wn20/instances/synset-movie-noun-1",
+          127
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Film",
+          139
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2002/07/owl#Thing",
+          140
+        ],
+        [
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://dbpedia.org/ontology/Work",
+          140
+        ]
+      ],
+      "id": "Voyage_to_the_Prehistoric_Planet",
+      "video": "http://ia600102.us.archive.org/23/items/VoyagetothePrehistoricPlanet/VoyagetothePrehistoricPlanet_512kb.mp4",
+      "description": "Voyage to the Prehistoric Planet is a 1965 science fiction film directed by Curtis Harrington. The film is actually an American adapted and edited version of the Russian science fiction movie Planeta Bur directed by Pavel Klushantsev, with Curtis Harrington filming extra scenes featuring Basil Rathbone and American actors for the US/English speaking market. In the story, it is 2020 and the Moon has been colonized.",
+      "image": "images/Voyage_to_the_Prehistoric_Planet.jpg"
+    }
+  ],
+  "id": "The_Little_Shop_of_Horrors"
+}

@@ -1,0 +1,25 @@
+Strophe: 
+-- MIT http://strophe.im/strophejs/
+
+spin.js: 
+-- MIT  http://fgnass.github.com/spin.js/
+
+jQuery: 
+-- MIT http://jquery.org/license/
+
+jQuery.ui.touch 
+-- MIT: http://code.google.com/p/jquery-ui-for-ipad-and-iphone/
+
+Compatibility of MIT and Apache 2: http://apache.org/legal/resolved.html#category-a
+
+Media:
+
+Big Buck Bunny 
+-- CC 3.0 http://www.bigbuckbunny.org/index.php/about/ 
+
+Internet Archive images are from Wikipedia:
+-- http://meta.wikimedia.org/wiki/Help:Public_domain_image_resources
+
+
+index.html, player.html, play_video.js, buttons.js, ipad.css, player.css
+-- Apache 2 http://www.apache.org/licenses/LICENSE-2.0

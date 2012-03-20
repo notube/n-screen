@@ -1,0 +1,17 @@
+body{
+  background:black;
+  color: white;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.overlay{
+  position:absolute;
+  top:10%;
+  left:15%;
+  width:70%;
+  opacity: 0.8;
+  background:black;
+  color: white;  
+  font-size:100px;
+  z-index:10;
+}

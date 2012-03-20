@@ -1,21 +1,14 @@
 ==N-screen==
 
-This is a web-based application that allows multiple people to go to a URL in a browser, drag and drop programmes 
-between each other, and drag and drop programmes to a 'TV' (XBMC installation) to play them. It can be used to find 
-and watch on-demand TV when 'together but apart'. You can see a video here:
+This is a web-based application that allows multiple people to go to a URL in a browser, drag and drop 
+programmes between each other, and drag and drop programmes to a 'TV' (XBMC installation) to play them. 
+It can be used to find and watch on-demand TV when 'together but apart'. You can see a video here:
 
 http://www.flickr.com/photos/nicecupoftea/5758350110/
 
-The setup is currently a bit complicated. It requires an EJabberd installation with Bosh enabled, and a Ruby backend 
-server including various gems installed. The actual client is very simple though - javascript and HTML with strophe 
-and jquery - it works in modern browsers. The eJabberd server can be on a separate machine. The ruby brain needs to be 
-on the same machine as the XBMC installation.
-
-Here we've included sample data and images for some archive.org video content so you can see how it might work. The 
-numbers of videos are quite small so we've just included the data here, but you could also use APIs to get the data 
-and / or store the videos locally rather than remotely. conf_bbc.js shows how remote data apis might work, and 
-conf_rai.js how it might work if your videos and data were local - but these latter two won't work straight out of the 
-box as they'd need apis running and / or local video.
+The setup requires an EJabberd installation with Bosh enabled, and various simple APIs to the data. The 
+actual client is very simple - javascript and HTML with strophe and jquery - it works in modern 
+browsers. The eJabberd server can be on a separate machine. 
 
 ==Installation==
 
@@ -31,4 +24,6 @@ This is only possible because of the great open source libraries available:
 * eJabberd XMPP server http://www.ejabberd.im/
 * XMPP4R ruby gem http://home.gna.org/xmpp4r/
 * XBMC: http://xbmc.org/
+
+And the great content from http://archive.org and http://ted.com and http://www.bigbuckbunny.org/
 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<!--
+ --------------------------------------------------------------------------
+ Copyright 2012 British Broadcasting Corporation and Vrije Universiteit 
+ Amsterdam
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ --------------------------------------------------------------------------
+-->
+
+<html>
+ <head>
+  <title id="title">Simple TV: N-Screen Player</title>
+
+  <script type="text/javascript" src="lib/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="lib/play_video.js"></script>
+
+  <script type="text/javascript" src="lib/strophe.js"></script>
+  <script type="text/javascript" src="lib/buttons.js"></script><!-- depends on jquery -->
+
+  <link type="text/css" rel="stylesheet" href="css/player.css" />
+
+
+<script type="text/javascript">
+
+var buttons = null;
+var emp = null;
+var me = null;
+var lastmsg;
+var playvideo = true;
+
+function show_message(msg){
+  if(msg!=lastmsg){
+    $("#overlay").html(msg);
+    $("#overlay").fadeIn().delay(5000).fadeOut('slow');
+    lastmsg = msg;
+  }else{
+   console.log("same");
+  }
+}
+
+// utility function create a temporary group name if none is set
+function tmp_group(){
+  var rand = Math.floor(Math.random()*9999)
+  return String(rand);
+}
+
+
+//determine the group and join it, or make a new group and join it
+
+function init(){
+
+  var my_group = null;
+  var grp_arr = window.location.hash.split("&");
+  var grp =grp_arr[0];
+
+  if(grp){
+     my_group = grp.substring(1);
+  }else{
+     my_group=tmp_group();
+  }
+
+  show_message("Welcome to Simple TV<br /><small>Group is "+my_group+"</small>");
+
+  var pr = tmp_name();
+  buttons = new ButtonsLink({"server":"jabber.notu.be"});
+  me = new TV(pr,pr);
+  buttons.connect(me,my_group,blink_callback);
+
+ // a simple opton for no video, to make a lightweight testing version
+  var h = window.location.hash;
+  if(h){
+     if(h.match("novideo")){
+        if(h=="false"){
+          playvideo = false;
+        }
+     }
+
+  }
+}
+
+
+// make a temporary name
+function tmp_name(){
+  var rand = Math.floor(Math.random()*9999)
+  //console.log("name!!! "+String(rand));
+  return "telly_"+String(rand);
+}
+
+function blink_callback(blink){
+
+}
+
+
+function makePlayer(){
+
+}
+
+
+
+$(document).bind('tv_changed', function (e,item) {
+  console.log(item);
+  var programme = item.nowp;
+  me.nowp = item.nowp;
+  $("#title").html(programme["title"]);
+
+  var action = "Play";
+  if(programme && programme["action"]){
+        action = programme["action"];
+  }  
+  show_message(action+"ing "+programme["title"]);
+
+  if(action=="Play"){
+
+  //pretty much everything should have a manifest
+    var manifest = programme["manifest"];
+    if(manifest){
+      console.log("manifest is "+manifest);
+  
+        $.ajax({
+        url: manifest,
+        dataType: "json",
+        success: function(data){
+         process_manifest(data,programme);
+         },
+         error: function(jqXHR, textStatus, errorThrown){
+         console.log("oh dear[1] "+textStatus);
+         }
+        }); 
+   }else{
+     alert("no manifest");
+   }
+  }
+});
+
+
+
+function process_manifest(manifest_data,programme){
+
+   if(manifest_data && manifest_data["limo"]){
+       //two kinds of manifest - one with events and one not
+       // this is the events one
+
+       if(manifest_data["limo"]["event-resources"][0]["link"]){
+
+         $.ajax({
+           url: manifest_data["limo"]["event-resources"][0]["link"],
+           dataType: "json",
+           success: function(data){
+           process_events(data);
+           },
+           error: function(jqXHR, textStatus, errorThrown){
+           console.log("oh dear[2] "+textStatus);
+           }
+         });
+
+       }
+
+       if(manifest_data["limo"]["media-resources"][0]["link"]){
+
+        $.ajax({
+         url: manifest_data["limo"]["media-resources"][0]["link"],
+         dataType: "json",
+           success: function(data){
+             process_manifest(data);
+           },
+           error: function(jqXHR, textStatus, errorThrown){
+             alert("oh dear[3] "+textStatus);
+           }
+        });
+
+       }else{
+         console.log("broken manifest limo file");
+       }
+
+    }else{
+
+      var locally_playable = false;
+
+      if(manifest_data && manifest_data["media"]){
+         var swf = manifest_data["media"]["swf"];
+         var mp4 = manifest_data["media"]["mp4"];
+         var provider = manifest_data["provider"];
+         var formats = {"swf":swf,"mp4":mp4};
+         process_video(programme,formats,provider,"1000","640");
+      }
+    }
+
+}
+
+
+
+</script>
+</head>
+<body onload="javascript:init()">
+  
+
+    <div class="vidembed" align="center">
+      <div id="player" class="player">
+      </div>
+    </div>
+
+    <div id="overlay"  style="display:none;" class="overlay">
+    </div>
+</body>
+</html>
+
+
+

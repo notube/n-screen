@@ -163,8 +163,6 @@ def do_search(text, limit)
                   suggestions2.push(sugg)
 
        end
-       #pp suggestions2
-#       suggestions2["title"]="Search results for #{text}"
 
        return suggestions2
 

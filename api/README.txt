@@ -12,6 +12,10 @@ You'll need mysql, ruby and a few gems - DBI is the only tricky one
 
 cd api
 mkdir WEBrickLog
+
+Download Webrick and edit 
+server.rb to reference the servlets
+
 ruby server.rb
 
 then go to 
