@@ -2,7 +2,7 @@
 
 On Ubuntu:
 
-sudo apt-get install ejabberd
+    sudo apt-get install ejabberd
 
 On Mac os X:
 
@@ -24,13 +24,13 @@ be careful - these should be both the same
 
 ==Install module ejabberdctl expansion - optional - I find it useful==
 
-mkdir ejabberd
-cd ejabberd
-svn co https://svn.process-one.net/ejabberd-modules
-cd ejabberd-modules/mod_admin_extra/trunk
-./build.sh
-cd ebin
-sudo cp mod_admin_extra.beam  /usr/lib/ejabberd/ebin/
+    mkdir ejabberd
+    cd ejabberd
+    svn co https://svn.process-one.net/ejabberd-modules
+    cd ejabberd-modules/mod_admin_extra/trunk
+    ./build.sh
+    cd ebin
+    sudo cp mod_admin_extra.beam  /usr/lib/ejabberd/ebin/
 
 ==Configure bosh with apache==
 
@@ -40,18 +40,17 @@ for bosh, you'll need this:
 
 RewriteEngine On
 
-RewriteRule http-bind http://localhost:5280/http-bind/ [P]
-RewriteRule http-bind/ http://localhost:5280/http-bind/ [P]
-RewriteRule http-poll http://localhost:5280/http-poll/ [P]
-RewriteRule http-poll/ http://localhost:5280/http-poll/ [P]
-RewriteRule admin/ http://localhost:5280/admin/ [P]
-
+     RewriteRule http-bind http://localhost:5280/http-bind/ [P]
+     RewriteRule http-bind/ http://localhost:5280/http-bind/ [P]
+     RewriteRule http-poll http://localhost:5280/http-poll/ [P]
+     RewriteRule http-poll/ http://localhost:5280/http-poll/ [P]
+     RewriteRule admin/ http://localhost:5280/admin/ [P]
 
 You also may need to edit sites-enabled to allow .htaccess files - you need AllowOverride All.
 
 ==Start eJabberd==
 
-ejabberd start -detached
+     ejabberd start -detached
 
 ==Various eJabberd Gotchas==
 
@@ -62,28 +61,28 @@ gotchas and possible solutions:
 
 Try starting it as root user (not just sudo):
 
-su root
-ejabberd start
+    sudo -u root -s
+    ejabberd start
 
 * Problem: ejabberd won't start in background
 
-ejabberd start -detached
+    ejabberd start -detached
 
 * Problem: running ejabberdctl gives an error like "Failed RPC connection to the node ‘ejabberd@localhost’: nodedown
 
-su root
-ejabberdctl
+    sudo -u root -s
+    ejabberdctl
 
 * Problem: bosh not working, even though the page /http-bind says it is
 
 Edit modules part of config make sure you have right config! there are two! – check
 
-ps ax | grep ejabberd
+     ps ax | grep ejabberd
 
 and that will show the correct one. The modules section should contain:
 
-{mod_http_bind, []},
-{mod_http_poll, []},
+     {mod_http_bind, []},
+     {mod_http_poll, []},
 
 * Problem: Mysteriously still not working, on Amazon EC2
 
@@ -93,4 +92,10 @@ configuration dashboard. It's under 'security groups'
 * Problem: Mysteriously still not working
 
 HTML client *must* be on the same domain as http-bind
+
+* Problem: strophe keeps disconnecting
+
+You need to add this to the config file:
+
+     {auth_method, [internal, anonymous]}.
 
